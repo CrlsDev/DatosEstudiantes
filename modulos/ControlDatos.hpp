@@ -1,10 +1,19 @@
 #pragma once
 #include <fstream>
+#include <string>
 #include ".\funciones.hpp"
 #include ".\Nodo.hpp"
-void Guardar(){
-  
+bool Guardar(Nodo* cab,const char* nombre){
+  std::ofstream archivo(".\\Datos\\"+std::string(nombre));
+  if (!archivo) return false;
+
+  while (cab!=NULL){
+    archivo<<cab->dato<<std::endl;
+    cab = cab->sig;
+  }
+  archivo.close();
+  return true;
 }
-bool Cargar(){
+Nodo* Cargar(){
 
 }
