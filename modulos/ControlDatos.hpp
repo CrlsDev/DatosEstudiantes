@@ -1,6 +1,6 @@
 #pragma once
 #include <fstream>
-#include ".\funciones.cpp"
+#include ".\funciones.hpp"
 #include ".\Nodo.hpp"
 void Guardar(){
   

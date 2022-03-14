@@ -1,18 +1,20 @@
 #pragma once
-bool pilaMeter(int p[],int &t,int n,int d){
-	if(t==n)
-		return false;
-	p[t++]=d;
-	return true;
+#include ".\Nodo.hpp"
+
+void pilaMeter(Nodo *&cab,int d){
+	Nodo *aux=new Nodo;
+	aux->dato=d;
+	aux->sig=cab;
+	cab=aux;
 }
-void colaMeter(NODO *&cab,int d){
-	NODO *aux=new NODO;
+void colaMeter(Nodo *&cab,int d){
+	Nodo *aux=new Nodo;
 	aux->dato=d;
 	aux->sig=NULL;
 	if(cab==NULL)
 		cab=aux;
 	else{
-		NODO *ult=cab;
+		Nodo *ult=cab;
 		while(ult->sig!=NULL)
 			ult=ult->sig;
 		ult->sig=aux;
@@ -24,9 +26,21 @@ void colaMeter(NODO *&cab,int d){
 		for(int i=0;i<t;i++)
 			cout<<p[i]<<" ";	
 }
-bool pilaBuscar(int p[],int t,int d){
+bool Buscar(int p[],int t,int d){
 	for(int i=0;i<t;i++)
 		if(d==p[i])
 			return true;
 	return false;	
 }
+bool pilaVacia(Nodo *cab){
+	return cab==NULL;
+}
+int contar(Nodo *aux){
+	int c=0;
+	while(aux!=NULL){
+		c++;
+		aux=aux->sig;
+	}
+	return c;
+}
+
