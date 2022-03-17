@@ -8,12 +8,12 @@ bool Guardar(Nodo* cab,const char* nombre){
   if (!archivo) return false;
 
   while (cab!=NULL){
-    archivo<<cab->dato<<std::endl;
+    archivo<<cab->id<<";"<<cab->nota<<std::endl;
     cab = cab->sig;
   }
   archivo.close();
   return true;
 }
-Nodo* Cargar(){
-
+Nodo* Cargar(const char* nombre){
+  std::ifstream archivo(".\\Datos\\"+std::string(nombre));
 }
