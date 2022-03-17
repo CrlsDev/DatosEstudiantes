@@ -6,8 +6,11 @@ using namespace std;
 int main(int argc, char** argv) {
   Nodo* cabeza=NULL;
 
-  long id = 4212;
-  float nota = 3.5;
+  long id=1212;
+  float nota=1.5;
+  //cout<<"meter id:"<<id;
+ // cout<<"meter nota;"<<nota;
   colaMeter(cabeza, id, nota);
+  colaMeter(cabeza, 12 , 1213);
   Mostrar(cabeza);
 }
