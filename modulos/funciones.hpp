@@ -1,15 +1,16 @@
 #pragma once
 #include ".\Nodo.hpp"
-
+using namespace std;
 void pilaMeter(Nodo *&cab,int d){
 	Nodo *aux=new Nodo;
-	aux->dato=d;
+//	aux->dato=d;
 	aux->sig=cab;
 	cab=aux;
 }
-void colaMeter(Nodo *&cab,int d){
+void colaMeter(Nodo *&cab,long id,float nota){
 	Nodo *aux=new Nodo;
-	aux->dato=d;
+	aux->id=id;
+	aux->nota=nota;
 	aux->sig=NULL;
 	if(cab==NULL)
 		cab=aux;
@@ -19,16 +20,19 @@ void colaMeter(Nodo *&cab,int d){
 			ult=ult->sig;
 		ult->sig=aux;
 	}
-	bool vacia(NODO *cab){
+}
+	bool vacia(Nodo *cab){
 	return cab==NULL;
 }
-	void mostrar(NODO *aux){
+	void Mostrar(Nodo *aux){
 	if(aux==NULL)
 		cout<<"Vacia";
 	else
 		while(aux!=NULL){
-			cout<<" "<<aux->dato;
+			cout<<"\nSu id es: "<<aux->id;
+				cout<<"\nSu nota es de: "<<aux->nota;
 			aux=aux->sig;
+			
 		}
 }
 bool Buscar(int p[],int t,int d){
@@ -40,9 +44,9 @@ bool Buscar(int p[],int t,int d){
 bool pilaVacia(Nodo *cab){
 	return cab==NULL;
 }
-bool buscar(NODO *aux,int d){
+bool buscar(Nodo *aux,int d){
 	while(aux!=NULL){
-		if(d==aux->dato)
+		if(d==aux->id)
 			return true;
 		aux=aux->sig;
 	}
@@ -53,16 +57,15 @@ int contar(Nodo *aux){
 	while(aux!=NULL){
 		c++;
 		aux=aux->sig;
-	}
-	int sacar(NODO *&cab){
+	}}
+int sacar(Nodo *&cab){
 	if(cab==NULL)
 		return 0;
-	int d=cab->dato;
-	NODO *aux=cab->sig;
+	int d=cab->id;
+	Nodo *aux=cab->sig;
 	delete cab;
 	cab=aux;
 	return d;
 }
-	return c;
-}
+
 
