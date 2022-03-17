@@ -35,11 +35,13 @@ void colaMeter(Nodo *&cab,long id,float nota){
 			
 		}
 }
-bool Buscar(int p[],int t,int d){
-	for(int i=0;i<t;i++)
-		if(d==p[i])
+bool buscar(Nodo *aux,long id){
+	while(aux!=NULL){
+		if(id==aux->id)
 			return true;
-	return false;	
+		aux=aux->sig;
+	}
+	return false;
 }
 bool pilaVacia(Nodo *cab){
 	return cab==NULL;
