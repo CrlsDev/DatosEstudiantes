@@ -16,4 +16,5 @@ bool Guardar(Nodo* cab,const char* nombre){
 }
 Nodo* Cargar(const char* nombre){
   std::ifstream archivo(".\\Datos\\"+std::string(nombre));
+  if (!archivo) return NULL;
 }
