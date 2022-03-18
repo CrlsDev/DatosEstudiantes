@@ -5,6 +5,7 @@
 using namespace std;
  Nodo* BuscarTraer(Nodo *aux,long id);
 int main(int argc, char** argv) {
+<<<<<<< HEAD
   Nodo* cabeza=NULL;
   
 //  long id=1212;
@@ -30,4 +31,8 @@ Nodo * BuscarTraer(Nodo *aux,long id){
 		aux=aux->sig;
 	}
 	return aux;
+=======
+	
+	//hola
+>>>>>>> ff7564de2f1fe0048d814020af77f13c2e314c11
 }
