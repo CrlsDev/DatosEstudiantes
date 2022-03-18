@@ -64,4 +64,36 @@ Nodo* sacar(Nodo *&cab){
 	return cab;
 }
 
-
+void pilaSacarColaMeter(NODO*&cabp,NODO*&case){
+	if(cabp==NULL)
+	return;
+	if(cabc==NULL){
+	
+	cabc==cab;
+	cabp=cab->sig;
+	cab->sig=NULL;	
+	}
+	else{
+	NODO*utl=cabc;
+	while(utl->sig!=NULL
+	ult=utl->sig;
+	ult->sig=casp;
+	cab=cab->siig;
+	ult->sig->sig=NULL;
+}
+}
+void colaSacarPilaMerter(NODO*cabc,NODO**&cabp){
+	if(cabc==NULL)
+	return;
+	if(cabp==NULL){
+	cabp=cabc;
+	cabc=cab->sig;
+	cabp->sig=NULL;
+	}
+	else{
+		NODO*aux=cabp;
+		cabp=cabc;
+		cabc=cabc->sig;
+		cabp->sig=aux;
+	}
+} 
