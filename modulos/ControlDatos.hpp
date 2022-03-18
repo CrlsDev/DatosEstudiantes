@@ -28,12 +28,14 @@ Nodo* Cargar(const char* nombre){
   while(!archivo.eof()){
     std::getline(archivo,linea);
     int sep = linea.find_first_of(SEPARADOR);
-    if (sep == std::string::npos){
+    
+    if (sep != std::string::npos){
       id = std::stoi(linea.substr(0,sep));
-      nota = std::stoi(linea.substr(sep, linea.length()-sep));
+      nota = std::stoi(linea.substr(sep+1, linea.length()-sep));
       colaMeter(cab,id,nota);
     }
   }
+  return cab; 
 }
 
 bool GuardarPila(Nodo* cab){
