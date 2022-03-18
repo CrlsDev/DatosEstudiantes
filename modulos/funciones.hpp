@@ -1,9 +1,10 @@
 #pragma once
 #include ".\Nodo.hpp"
 using namespace std;
-void pilaMeter(Nodo *&cab,int d){
+void pilaMeter(Nodo *&cab,long id,float nota){
 	Nodo *aux=new Nodo;
-//	aux->dato=d;
+	aux->id=id;
+	aux->nota=nota;
 	aux->sig=cab;
 	cab=aux;
 }
@@ -35,37 +36,32 @@ void colaMeter(Nodo *&cab,long id,float nota){
 			
 		}
 }
-bool Buscar(int p[],int t,int d){
-	for(int i=0;i<t;i++)
-		if(d==p[i])
-			return true;
-	return false;	
-}
-bool pilaVacia(Nodo *cab){
-	return cab==NULL;
-}
-bool buscar(Nodo *aux,int d){
+
+bool Buscar(Nodo *aux,long id){
 	while(aux!=NULL){
-		if(d==aux->id)
+		if(id==aux->id)
 			return true;
 		aux=aux->sig;
 	}
 	return false;
 }
+
 int contar(Nodo *aux){
 	int c=0;
 	while(aux!=NULL){
 		c++;
 		aux=aux->sig;
-	}}
-int sacar(Nodo *&cab){
+	}return c;
+	}
+	
+Nodo* sacar(Nodo *&cab){
 	if(cab==NULL)
-		return 0;
-	int d=cab->id;
+		return NULL;
+	int id=cab->id;
 	Nodo *aux=cab->sig;
 	delete cab;
-	cab=aux;
-	return d;
+//	cab=aux;
+	return cab;
 }
 
 
