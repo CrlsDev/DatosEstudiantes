@@ -29,13 +29,15 @@ bool vacia(Nodo *cab){
 void Mostrar(Nodo *aux){
 	if(aux==NULL)
 		cout<<"Vacia";
-	else
+	else{
 		while(aux!=NULL){
 			cout<<"\nSu id es: "<<aux->id;
 				cout<<"\nSu nota es de: "<<aux->nota;
 			aux=aux->sig;
 			
 		}
+		cout<<endl;
+	}		
 }
 
 bool Buscar(Nodo *aux,long id){
