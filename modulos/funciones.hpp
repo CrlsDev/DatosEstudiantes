@@ -22,10 +22,11 @@ void colaMeter(Nodo *&cab,long id,float nota){
 		ult->sig=aux;
 	}
 }
-	bool vacia(Nodo *cab){
+
+bool vacia(Nodo *cab){
 	return cab==NULL;
 }
-	void Mostrar(Nodo *aux){
+void Mostrar(Nodo *aux){
 	if(aux==NULL)
 		cout<<"Vacia";
 	else
@@ -53,25 +54,23 @@ int contar(Nodo *aux){
 		aux=aux->sig;
 	}return c;
 	}
-void promedio(Nodo*aux){
-	int suma=0;
-	double promedio;
+float promedio(Nodo*aux){
+	float suma=0;
+	int conteo=0;
 	while(aux!=NULL){
 	suma=suma+aux->nota;
 	aux=aux->sig;
+	conteo++;
 	}
-	promedio=suma;
-}
+ return suma/conteo;}
 	
 	
 Nodo* sacar(Nodo *&cab){
 	if(cab==NULL)
 		return NULL;
-	int id=cab->id;
-	Nodo *aux=cab->sig;
-	delete cab;
-//	cab=aux;
-	return cab;
+	Nodo *aux=cab;
+    cab=cab->sig;
+	return aux;
 }
 
 void pilaSacarColaMeter(Nodo*&cabp,Nodo*&cabc){
@@ -80,7 +79,7 @@ void pilaSacarColaMeter(Nodo*&cabp,Nodo*&cabc){
 	if(cabc==NULL){
 	cabc==cabp;
 	cabp=cabp->sig;
-	cabp->sig=NULL;	
+	cabc->sig=NULL;	//revisar
 	}
 	else{
 	Nodo*ult=cabc;
@@ -88,7 +87,7 @@ void pilaSacarColaMeter(Nodo*&cabp,Nodo*&cabc){
 	ult=ult->sig;
 	ult->sig=cabp;
 	cabp=cabp->sig;
-	ult->sig->sig=NULL;
+	ult->sig->sig=NULL; //revisar
 }}}
 void colaSacarPilaMerter(Nodo*cabc,Nodo*&cabp){
 	if(cabc==NULL)
@@ -96,12 +95,12 @@ void colaSacarPilaMerter(Nodo*cabc,Nodo*&cabp){
 	if(cabp==NULL){
 	cabp=cabc;
 	cabc=cabc->sig;
-	cabp->sig=NULL;
+	cabp->sig=NULL; //revisar
 	}
 	else{
 		Nodo*aux=cabp;
 		cabp=cabc;
 		cabc=cabc->sig;
-		cabp->sig=aux;
+		cabp->sig=aux; //revisar
 	}
 } 
