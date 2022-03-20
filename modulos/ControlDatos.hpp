@@ -8,7 +8,7 @@
 #define ARCHIVO_PILA "estudiantes_pila"
 #define ARCHIVO_COLA "estudiantes_cola"
 bool Guardar(Nodo* cab,const char* nombre){
-  std::ofstream archivo(".\\Datos\\"+std::string(nombre));
+  std::ofstream archivo(std::string(".\\Datos\\"+std::string(nombre)).c_str());
   if (!archivo) return false;
 
   while (cab!=NULL){
@@ -19,7 +19,7 @@ bool Guardar(Nodo* cab,const char* nombre){
   return true;
 }
 Nodo* Cargar(const char* nombre){
-  std::ifstream archivo(".\\Datos\\"+std::string(nombre));
+  std::ifstream archivo(std::string(".\\Datos\\"+std::string(nombre)).c_str());
   if (!archivo) return NULL;
   Nodo* cab = NULL;
   std::string linea;
