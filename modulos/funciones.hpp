@@ -53,6 +53,16 @@ int contar(Nodo *aux){
 		aux=aux->sig;
 	}return c;
 	}
+void promedio(Nodo*aux){
+	int suma=0;
+	double promedio;
+	while(aux!=NULL){
+	suma=suma+aux->nota;
+	aux=aux->sig;
+	}
+	promedio=suma;
+}
+	
 	
 Nodo* sacar(Nodo *&cab){
 	if(cab==NULL)
@@ -64,34 +74,32 @@ Nodo* sacar(Nodo *&cab){
 	return cab;
 }
 
-void pilaSacarColaMeter(NODO*&cabp,NODO*&case){
+void pilaSacarColaMeter(Nodo*&cabp,Nodo*&cabc){
 	if(cabp==NULL)
 	return;
 	if(cabc==NULL){
-	
-	cabc==cab;
-	cabp=cab->sig;
-	cab->sig=NULL;	
+	cabc==cabp;
+	cabp=cabp->sig;
+	cabp->sig=NULL;	
 	}
 	else{
-	NODO*utl=cabc;
-	while(utl->sig!=NULL
-	ult=utl->sig;
-	ult->sig=casp;
-	cab=cab->siig;
+	Nodo*ult=cabc;
+	while(ult->sig!=NULL){
+	ult=ult->sig;
+	ult->sig=cabp;
+	cabp=cabp->sig;
 	ult->sig->sig=NULL;
-}
-}
-void colaSacarPilaMerter(NODO*cabc,NODO**&cabp){
+}}}
+void colaSacarPilaMerter(Nodo*cabc,Nodo*&cabp){
 	if(cabc==NULL)
 	return;
 	if(cabp==NULL){
 	cabp=cabc;
-	cabc=cab->sig;
+	cabc=cabc->sig;
 	cabp->sig=NULL;
 	}
 	else{
-		NODO*aux=cabp;
+		Nodo*aux=cabp;
 		cabp=cabc;
 		cabc=cabc->sig;
 		cabp->sig=aux;
