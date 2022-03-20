@@ -5,9 +5,9 @@
 #include ".\Nodo.hpp"
 #define SEPARADOR ";"
 
-#define ARCHIVO_PILA "estudiantes_pila"
-#define ARCHIVO_COLA "estudiantes_cola"
-bool Guardar(Nodo* cab,const char* nombre){
+#define ARCHIVO "notas_estudiantes"
+
+bool Guardar(Nodo* cab,const char* nombre = ARCHIVO){
   std::ofstream archivo(std::string(".\\Datos\\"+std::string(nombre)).c_str());
   if (!archivo) return false;
 
@@ -18,7 +18,7 @@ bool Guardar(Nodo* cab,const char* nombre){
   archivo.close();
   return true;
 }
-Nodo* Cargar(const char* nombre){
+Nodo* Cargar(const char* nombre = ARCHIVO){
   std::ifstream archivo(std::string(".\\Datos\\"+std::string(nombre)).c_str());
   if (!archivo) return NULL;
   Nodo* cab = NULL;
@@ -36,17 +36,4 @@ Nodo* Cargar(const char* nombre){
     }
   }
   return cab; 
-}
-
-bool GuardarPila(Nodo* cab){
-  return Guardar(cab, ARCHIVO_PILA);
-}
-bool GuardarCola(Nodo* cab){
-  return Guardar(cab, ARCHIVO_COLA);
-}
-Nodo* CargarPila(){
-  return Cargar(ARCHIVO_PILA);
-}
-Nodo* CargarCola(){
-  return Cargar(ARCHIVO_COLA);
 }

@@ -79,7 +79,7 @@ void pilaSacarColaMeter(Nodo*&cabp,Nodo*&cabc){
 	if(cabc==NULL){
 	cabc==cabp;
 	cabp=cabp->sig;
-	cabc->sig=NULL;	//revisar
+	cabc->sig=NULL;
 	}
 	else{
 	Nodo*ult=cabc;
@@ -87,21 +87,13 @@ void pilaSacarColaMeter(Nodo*&cabp,Nodo*&cabc){
 	ult=ult->sig;}
 	ult->sig=cabp;
 	cabp=cabp->sig;
-	ult->sig->sig=NULL; //revisar
+	ult->sig->sig=NULL; 
 }}
 void colaSacarPilaMeter(Nodo*&cabc,Nodo*&cabp){
 	if(cabc==NULL)
 	return;
-	if(cabp==NULL){
+	Nodo*aux=cabp;
 	cabp=cabc;
 	cabc=cabc->sig;
-	cabp->sig=NULL; //revisar
-	}
-	else{
-		
-		Nodo*aux=cabp;
-		cabp=cabc;
-		cabc=cabc->sig;
-		cabp->sig=aux; //revisar
-	}
+	cabp->sig=aux;
 } 
