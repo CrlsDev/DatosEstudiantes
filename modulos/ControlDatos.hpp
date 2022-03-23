@@ -1,8 +1,10 @@
 #pragma once
 #include <fstream>
 #include <string>
+#include <sstream>
 #include ".\funciones.hpp"
 #include ".\Nodo.hpp"
+
 #define SEPARADOR ";"
 
 #define ARCHIVO "notas_estudiantes"
@@ -23,15 +25,18 @@ Nodo* Cargar(const char* nombre = ARCHIVO){
   if (!archivo) return NULL;
   Nodo* cab = NULL;
   std::string linea;
-  long id;
-  float nota;
+  std::stringstream conversion;
+  int id;
+  int nota;
   while(!archivo.eof()){
     std::getline(archivo,linea);
     int sep = linea.find_first_of(SEPARADOR);
     
     if (sep != std::string::npos){
-      id = std::atoi(linea.substr(0,sep).c_str());
-      nota = std::atoi(linea.substr(sep+1, linea.length()-sep).c_str());
+      // id = std::atoi(linea.substr(0,sep).c_str());
+      // nota = std::atoi(linea.substr(sep+1, linea.length()-sep).c_str());
+      conversion<<linea.substr(0,sep); conversion>>id;
+      conversion<<linea.substr(sep+1, linea.length()-sep); conversion>>nota;
       colaMeter(cab,id,nota);
     }
   }
