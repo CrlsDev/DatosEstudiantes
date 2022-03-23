@@ -1,5 +1,7 @@
 #pragma once
 #include ".\Nodo.hpp"
+#include<windows.h>
+#include <iostream>
 using namespace std;
 void pilaMeter(Nodo *&cab,long id,float nota){
 	Nodo *aux=new Nodo;
@@ -98,3 +100,10 @@ void colaSacarPilaMeter(Nodo*&cabc,Nodo*&cabp){
 	cabc=cabc->sig;
 	cabp->sig=aux;
 } 
+
+void PosicionarCursor(int x, int y){
+  HANDLE cur; 
+	COORD pos; 
+	cur = GetStdHandle(STD_OUTPUT_HANDLE);
+  pos.Y  =  y;  pos.X  =  x;  SetConsoleCursorPosition(cur,pos);
+}
