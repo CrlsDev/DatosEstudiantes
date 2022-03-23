@@ -1,9 +1,10 @@
 #pragma once
 #include ".\Nodo.hpp"
 using namespace std;
-void pilaMeter(Nodo *&cab,int d){
+void pilaMeter(Nodo *&cab,long id,float nota){
 	Nodo *aux=new Nodo;
-//	aux->dato=d;
+	aux->id=id;
+	aux->nota=nota;
 	aux->sig=cab;
 	cab=aux;
 }
@@ -21,51 +22,79 @@ void colaMeter(Nodo *&cab,long id,float nota){
 		ult->sig=aux;
 	}
 }
-	bool vacia(Nodo *cab){
+
+bool vacia(Nodo *cab){
 	return cab==NULL;
 }
-	void Mostrar(Nodo *aux){
+void Mostrar(Nodo *aux){
 	if(aux==NULL)
 		cout<<"Vacia";
-	else
+	else{
 		while(aux!=NULL){
 			cout<<"\nSu id es: "<<aux->id;
 				cout<<"\nSu nota es de: "<<aux->nota;
 			aux=aux->sig;
 			
 		}
+		cout<<endl;
+	}		
 }
-bool Buscar(int p[],int t,int d){
-	for(int i=0;i<t;i++)
-		if(d==p[i])
-			return true;
-	return false;	
-}
-bool pilaVacia(Nodo *cab){
-	return cab==NULL;
-}
-bool buscar(Nodo *aux,int d){
+
+bool Buscar(Nodo *aux,long id){
 	while(aux!=NULL){
-		if(d==aux->id)
+		if(id==aux->id)
 			return true;
 		aux=aux->sig;
 	}
 	return false;
 }
+
 int contar(Nodo *aux){
 	int c=0;
 	while(aux!=NULL){
 		c++;
 		aux=aux->sig;
-	}}
-int sacar(Nodo *&cab){
+	}return c;
+	}
+float promedio(Nodo*aux){
+	float suma=0;
+	int conteo=0;
+	while(aux!=NULL){
+	suma=suma+aux->nota;
+	aux=aux->sig;
+	conteo++;
+	}
+ return suma/conteo;}
+	
+	
+Nodo* sacar(Nodo *&cab){
 	if(cab==NULL)
-		return 0;
-	int d=cab->id;
-	Nodo *aux=cab->sig;
-	delete cab;
-	cab=aux;
-	return d;
+		return NULL;
+	Nodo *aux=cab;
+    cab=cab->sig;
+	return aux;
 }
 
-
+void pilaSacarColaMeter(Nodo*&cabp,Nodo*&cabc){
+	if(cabp==NULL) return;
+	if(cabc==NULL){
+		cabc=cabp;
+		cabp=cabp->sig;
+		cabc->sig=NULL;
+	}
+	else{
+		Nodo*ult=cabc;
+		while(ult->sig!=NULL){
+		ult=ult->sig;}
+		ult->sig=cabp;
+		cabp=cabp->sig;
+		ult->sig->sig=NULL;
+	}
+}
+void colaSacarPilaMeter(Nodo*&cabc,Nodo*&cabp){
+	if(cabc==NULL) return;
+	Nodo*aux=cabp;
+	cabp=cabc;
+	cabc=cabc->sig;
+	cabp->sig=aux;
+} 

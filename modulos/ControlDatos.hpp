@@ -4,8 +4,11 @@
 #include ".\funciones.hpp"
 #include ".\Nodo.hpp"
 #define SEPARADOR ";"
-bool Guardar(Nodo* cab,const char* nombre){
-  std::ofstream archivo(".\\Datos\\"+std::string(nombre));
+
+#define ARCHIVO "notas_estudiantes"
+
+bool Guardar(Nodo* cab,const char* nombre = ARCHIVO){
+  std::ofstream archivo(std::string(".\\Datos\\"+std::string(nombre)).c_str());
   if (!archivo) return false;
 
   while (cab!=NULL){
@@ -15,8 +18,8 @@ bool Guardar(Nodo* cab,const char* nombre){
   archivo.close();
   return true;
 }
-Nodo* Cargar(const char* nombre){
-  std::ifstream archivo(".\\Datos\\"+std::string(nombre));
+Nodo* Cargar(const char* nombre = ARCHIVO){
+  std::ifstream archivo(std::string(".\\Datos\\"+std::string(nombre)).c_str());
   if (!archivo) return NULL;
   Nodo* cab = NULL;
   std::string linea;
@@ -24,7 +27,13 @@ Nodo* Cargar(const char* nombre){
   float nota;
   while(!archivo.eof()){
     std::getline(archivo,linea);
+    int sep = linea.find_first_of(SEPARADOR);
     
-    colaMeter(cab,id,nota);
+    if (sep != std::string::npos){
+      id = std::stoi(linea.substr(0,sep));
+      nota = std::stoi(linea.substr(sep+1, linea.length()-sep));
+      colaMeter(cab,id,nota);
+    }
   }
+  return cab; 
 }

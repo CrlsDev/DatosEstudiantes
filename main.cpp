@@ -4,8 +4,10 @@
 //#include ".\modulos\ControlDatos.hpp" //se incluyo el archivo de funciones
 
 using namespace std;
+
 int main(int argc, char** argv) {
 	
+<<<<<<< HEAD
 	HANDLE cur; 
 	COORD pos; 
 	cur = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -316,6 +318,9 @@ int main(int argc, char** argv) {
 			
 					
 	
+=======
+  //hola	
+>>>>>>> 6b6e082d5bb342148bf87ddc9e080331ecd79ebe
 }
 }
 
