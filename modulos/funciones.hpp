@@ -53,6 +53,18 @@ bool Buscar(Nodo *aux,long id){
 	}
 	return false;
 }
+ Nodo*BuscarId(Nodo*cab,long id){
+	 while(cab!=NULL){
+		if(id==cab->id){
+			cab->sig=NULL;
+			return cab;
+
+		}
+		cab=cab->sig;
+	}
+	return NULL;
+
+ }
 
 int contar(Nodo *aux){
 	int c=0;
