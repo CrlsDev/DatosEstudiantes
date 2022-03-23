@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
   int op,op1,bsc,mov,opr, modo;
-	
+  Nodo*pila=NULL,*cola=NULL,*puntero=NULL;
   const char* texto_modo = "(NO SE HA ELEGIDO MODO)"; 
     
 
@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
           
     switch (op1)
     {
-      case 1:
+      case 1: //SELECCIONAR OPCION PILA O COLA.
         do{
           system ("CLS");
           PosicionarCursor(45,10); cout<<"ESCOJA UNA OPCION\n";
@@ -42,13 +42,22 @@ int main(int argc, char** argv) {
         }while(modo!=1 && modo!=2);
         if (modo==1){
           texto_modo = "PILA";
+		  puntero=pila;
         }else if (modo==2){
           texto_modo = "COLA";
-        }
+		  puntero=cola;
+		}
         break;
-      case 2:
+      case 2: //METER DATO
         cout<<"Ingrese prueba meter \n";
-        
+        long id; float nota;
+		do{
+		PosicionarCursor(45,15); cout<<"Digite id:",cin>>id;
+		PosicionarCursor(45,16); cout<<"Digite nota:",cin>>nota;
+	//bool prueba=(!(nota<=5 && nota>=0)||(id<=0));
+	//	  cout<<"\n"<<prueba;
+		  system("pause");
+		} while (!(nota<=5 && nota>=0)||(id<=0));
       break;
       case 3:
         cout<<" prueba sacar \n";
