@@ -30,8 +30,8 @@ Nodo* Cargar(const char* nombre = ARCHIVO){
     int sep = linea.find_first_of(SEPARADOR);
     
     if (sep != std::string::npos){
-      id = std::stoi(linea.substr(0,sep));
-      nota = std::stoi(linea.substr(sep+1, linea.length()-sep));
+      id = std::atoi(linea.substr(0,sep).c_str());
+      nota = std::atoi(linea.substr(sep+1, linea.length()-sep).c_str());
       colaMeter(cab,id,nota);
     }
   }
