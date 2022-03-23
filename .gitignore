@@ -1,4 +1,5 @@
 **/*.gch
-./.vscode/tasks.json 
+./.vscode/tasks.json
+./.vscode/launch.json
 **/.vscode
 *.exe
