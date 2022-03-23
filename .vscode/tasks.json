@@ -4,7 +4,7 @@
 		{
 			"type": "cppbuild",
 			"label": "C/C++: g++.exe compilar archivo activo",
-			"command": "C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/g++.exe",
+			"command": "C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe",
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
@@ -13,21 +13,21 @@
 				"${fileDirname}/${fileBasenameNoExtension}.exe"
 			],
 			"options": {
-				"cwd": "C:/Program Files (x86)/Dev-Cpp/MinGW64/bin"
+				"cwd": "C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin"
 			},
 			"problemMatcher": [
 				"$gcc"
 			],
 			"group": "build",
-			"detail": "compilador: \"C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/g++.exe\""
+			"detail": "compilador: \"C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe\""
 		},
 		{
 			"type": "cppbuild",
 			"label": "C/C++: g++.exe compilar archivo activo",
-			"command": "C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/g++.exe",
+			"command": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
 			"args": [
 				"-fdiagnostics-color=always",
-				"-g",								
+				"-g",
 				"${file}",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe"
@@ -39,7 +39,7 @@
 				"$gcc"
 			],
 			"group": "build",
-			"detail": "compilador: \"C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/g++.exe\""
+			"detail": "compilador: \"C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe\""
 		}
 	]
 }
