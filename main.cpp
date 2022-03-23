@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
           
     switch (op1){
       case 1: //SELECCIONAR OPCION PILA O COLA.
-        {do{
+        do{
           system ("CLS");
           PosicionarCursor(45,10); cout<<"ESCOJA UNA OPCION\n";
           PosicionarCursor(45,12); cout<<"1.............Pila\n";
@@ -47,10 +47,10 @@ int main(int argc, char** argv) {
         }else if (modo==2){
           texto_modo = "COLA";
           puntero=&cola;
-        }}
+        }
         break;
       case 2: //METER DATO
-        {cout<<"Ingrese prueba meter \n";
+        cout<<"Ingrese prueba meter \n";
         long id; float nota;
         do{
           system ("CLS");
@@ -88,7 +88,7 @@ int main(int argc, char** argv) {
           pilaMeter(pila,id,nota);
         }else if (modo==2){
           colaMeter(cola,id,nota);
-        }}
+        }
 		
         break;
       case 3:
@@ -107,7 +107,7 @@ int main(int argc, char** argv) {
         break;
       case 5:
         
-        {system ("CLS");
+        system ("CLS");
         
         PosicionarCursor(45,2); cout<<"BUSCAR\n";
         PosicionarCursor(40,6); cout<<"1.............Buscar por ID\n";
@@ -130,7 +130,7 @@ int main(int argc, char** argv) {
           break;
         
           default: cout<<" No se ha digitado una opcion valido \n";
-        }}
+        }
         break;
       case 6:
           
