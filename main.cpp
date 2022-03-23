@@ -99,11 +99,11 @@ int main(int argc, char** argv) {
         system("pause");
         break;
       case 4:
-        {cout<<"Prueba mostrar \n";
+        cout<<"Prueba mostrar \n";
         system ("CLS");
         
         Mostrar(*puntero);
-        system("pause");}
+        system("pause");
         break;
       case 5:
         
