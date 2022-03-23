@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "modulos/funciones.hpp"
-//#include ".\modulos\ControlDatos.hpp" //se incluyo el archivo de funciones
+#include ".\modulos\ControlDatos.hpp" //se incluyo el archivo de funciones
 
 using namespace std;
 
@@ -34,6 +34,7 @@ int main(int argc, char** argv) {
     switch (op1)
     {
       case 1: //SELECCIONAR OPCION PILA O COLA.
+        
         do{
           system ("CLS");
           PosicionarCursor(45,10); cout<<"ESCOJA UNA OPCION\n";
@@ -51,7 +52,13 @@ int main(int argc, char** argv) {
         }
         break;
       case 2: //METER DATO
-        cout<<"Ingrese prueba meter \n";
+        
+        if (puntero==NULL)
+        {
+          cout<<"elija un modo."<<endl;
+          system("pause");
+          break;
+        }
         long id; float nota;
         do{
         system ("CLS");
@@ -95,22 +102,47 @@ int main(int argc, char** argv) {
         }
 		
         break;
-      case 3:
-       { cout<<" prueba sacar \n";
+      case 3: // prueba sacar
+      if (puntero==NULL)
+        {
+          cout<<"elija un modo."<<endl;
+          system("pause");
+          break;
+        }
+       { 
           Nodo*datoSacar=sacar(*puntero); 
+          if (datoSacar!=NULL)
+          {
           cout<<"Saco : "<<datoSacar->id;
           cout<<","<<datoSacar->nota<<endl;
-          system("pause");}
+          }else
+          {
+            cout<<"la estructura esta vacia."<<endl;
+          }
+          
+          system("pause");
+         }
       break;
-      case 4:
+      case 4: //mostrar
+      if (puntero==NULL)
+        {
+          cout<<"elija un modo."<<endl;
+          system("pause");
+          break;
+        }
         cout<<"Prueba mostrar \n";
         system ("CLS");
         
         Mostrar(*puntero);
         system("pause");
       break;
-      case 5:
-        
+      case 5: // BUSCAR
+        if (puntero==NULL)
+        {
+          cout<<"elija un modo."<<endl;
+          system("pause");
+          break;
+        }
         system ("CLS");
         
         PosicionarCursor(45,2); cout<<"BUSCAR\n";
@@ -135,35 +167,47 @@ int main(int argc, char** argv) {
         
           default: cout<<" No se ha digitado una opcion valido \n";
         }
-      case 6:
-          
-        system ("CLS");
+      case 6: //Intercambio de datos
+        do
+          {
+          system ("CLS");
         
-        PosicionarCursor(45,2); cout<<"INTERCAMBIAR DATOS\n";
-        PosicionarCursor(40,6); cout<<"1.............Mover datos de Cola a Fila\n";
-        PosicionarCursor(40,7); cout<<"2.............Mover datos de Fila a Cola\n";
-        PosicionarCursor(40,8); cout<<"3.............Regresar\n";
-        PosicionarCursor(40,10);cout<<"Opcion: \n";
-        PosicionarCursor(48,10);cin>>mov;
+          PosicionarCursor(45,2); cout<<"INTERCAMBIAR DATOS\n";
+          PosicionarCursor(40,6); cout<<"1.............Mover datos de Cola a Pila\n";
+          PosicionarCursor(40,7); cout<<"2.............Mover datos de Pila a Cola\n";
+          PosicionarCursor(40,8); cout<<"3.............Regresar\n";
+          PosicionarCursor(40,10);cout<<"Opcion: \n";
+          PosicionarCursor(48,10);cin>>mov;
         
-        switch (mov)
+          switch (mov)
         {
           system ("CLS");
           
           case 1:
           cout<<"cola a fila prueba\n";
-        
+          colaSacarPilaMeter(cola,pila);
           break;
           case 2:
           cout<<"fila a cola prueba\n";
-
+          pilaSacarColaMeter(pila,cola);
+          break;
+          case 3:
           break;
         
-        default: cout<<" No se ha digitado una opcion valido \n";
+          default: cout<<" No se ha digitado una opcion valido \n";
         }
-      case 7:
-          
-        system ("CLS");
+          } while (mov!=3);
+        break;
+      case 7: // operar
+      if (puntero==NULL)
+        {
+          cout<<"elija un modo."<<endl;
+          system("pause");
+          break;
+        }
+          do
+          {
+            system ("CLS");
         
         PosicionarCursor(45,2); cout<<"OPERAR\n";
         PosicionarCursor(40,6); cout<<"1.............Contar Estudiantes\n";
@@ -174,26 +218,44 @@ int main(int argc, char** argv) {
         
         switch (opr)
         {
-          system ("CLS");
           
           case 1:
-          cout<<"Contar prueba\n";
-        
+          {cout<<"Contar prueba\n";
+          int conteo=contar(*puntero);
+          cout<<"El total de las notas guardas es: "<<conteo<<endl;
+          system("pause");}
           break;
-          case 2:
+          case 2:{
           cout<<"promediar prueba \n";
-
+          float prom=promedio(*puntero);
+          cout<<"El promedio de las notas es: "<<prom<<endl;}
+          system("pause");
           break;
-        
-        default: cout<<" No se ha digitado una opcion valido \n";
+          case 3:
+          break;
+    
+        default: cout<<" No se ha digitado una opcion valido \n"; break;
         }
-      case 8:
+          } while (opr!=3);
+        
+        break;
+        
+      case 8: // respaldo
+      if (puntero==NULL)
+        {
+          cout<<"elija un modo."<<endl;
+          system("pause");
+          break;
+        }
+        do
+        {
           
+        
         system ("CLS");
         
         PosicionarCursor(45,2); cout<<"RESPALDO DE DATOS\n";
-        PosicionarCursor(40,6); cout<<"1.............Cargar en <MODO>\n";
-        PosicionarCursor(40,7); cout<<"2.............Guardar en <modo>\n";
+        PosicionarCursor(40,6); cout<<"1.............Cargar en "<<texto_modo;
+        PosicionarCursor(40,7); cout<<"2.............Guardar en "<<texto_modo;
         PosicionarCursor(40,8); cout<<"3.............Guardar todo \n";
         PosicionarCursor(40,9); cout<<"4.............Regresar\n";
         PosicionarCursor(40,10);cout<<"Opcion: \n";
@@ -201,23 +263,37 @@ int main(int argc, char** argv) {
         
         switch (opr)
         {
-          system ("CLS");
           
           case 1:
-          cout<<"cargar prueba\n";
-        
+          *puntero=Cargar();
+          if (*puntero==NULL)
+          {
+            cout<<"No hay nada que cargar o el archivo no existe"<<endl;
+          }else{
+            cout<<"Se cargaron datos con exito"<<endl;
+          }
+            system("pause");
           break;
           case 2:
-          cout<<"guardar prueba \n";
-
+          if (Guardar(*puntero))
+          {
+            cout<<"Se guardo con exito."<<endl;
+          }else{
+            cout<<"no se pudo guardar."<<endl;
+          }
+          system("pause");
           break;
           case 3:
-          cout<<"guardar todo prueba \n";
+          
 
+          break;
+          case 4:
           break;
         
         default: cout<<" No se ha digitado una opcion valido \n";
         }
+        } while (opr!=4);
+        break;
       case 9:
         break; 
       default: cout<<" No se ha digitado una opcion valido \n";
