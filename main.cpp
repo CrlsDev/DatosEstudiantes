@@ -44,73 +44,70 @@ int main(int argc, char** argv) {
         }while(modo!=1 && modo!=2);
         if (modo==1){
           texto_modo = "PILA";
-		  puntero=&pila;
+          puntero=&pila;
         }else if (modo==2){
           texto_modo = "COLA";
-		  puntero=&cola;
-		}
+          puntero=&cola;
+        }
         break;
       case 2: //METER DATO
         cout<<"Ingrese prueba meter \n";
         long id; float nota;
-		do{
-		system ("CLS");
-		PosicionarCursor(45,15); cout<<"Digite id:";cin>>id;
-		if (modo==1)
-		{
-			if (Buscar(pila,id))
-			{
-			PosicionarCursor(45,17); cout<<"Esta id ya existe";
-			system("pause");
-			continue;
-			}
-			if(Buscar(cola,id)){ // Pendiente
-			
-			}
+        do{
+        system ("CLS");
+        PosicionarCursor(45,15); cout<<"Digite id:";cin>>id;
+        if (modo==1)
+        {
+          if (Buscar(pila,id)){
+          PosicionarCursor(45,17); cout<<"Esta id ya existe";
+          system("pause");
+          continue;
+          }
+          if(Buscar(cola,id)){ // Pendiente
+          
+          }
 
-		}else if (modo==2)
-		{
-			if (Buscar(cola,id))
-			{
-			PosicionarCursor(45,17); cout<<"Esta id ya existe";
-			system("pause");
-			continue;
-			}
-			if(Buscar(pila,id)){ // Pendiente
-			
-			}
-		
-		}
-		
-		} while ((id<=0));
-		do{
-		system ("CLS");
-		PosicionarCursor(45,15); cout<<"Digite id:"<<id;
-		PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):";cin>>nota;
-		} while (!(nota<=5 && nota>=0));
+        }else if (modo==2){
+          if (Buscar(cola,id)){
+            PosicionarCursor(45,17); cout<<"Esta id ya existe";
+            system("pause");
+            continue;
+          }
+          if(Buscar(pila,id)){ // Pendiente
+          
+          }
+        
+        }
+        
+        } while ((id<=0));
+        do{
+        system ("CLS");
+        PosicionarCursor(45,15); cout<<"Digite id:"<<id;
+        PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):";cin>>nota;
+        } while (!(nota<=5 && nota>=0));
 
-		if (modo==1)
-		{
-		pilaMeter(pila,id,nota);
-		}else if (modo==2)
-		{
-		colaMeter(cola,id,nota);
-		}
+        if (modo==1)
+        {
+        pilaMeter(pila,id,nota);
+        }else if (modo==2)
+        {
+        colaMeter(cola,id,nota);
+        }
 		
         break;
       case 3:
        { cout<<" prueba sacar \n";
-		Nodo*datoSacar=sacar(*puntero); 
-		cout<<"Saco : "<<datoSacar->id;
-		cout<<","<<datoSacar->nota<<endl;
-    system("pause");}
+          Nodo*datoSacar=sacar(*puntero); 
+          cout<<"Saco : "<<datoSacar->id;
+          cout<<","<<datoSacar->nota<<endl;
+          system("pause");}
       break;
       case 4:
         cout<<"Prueba mostrar \n";
-		system ("CLS");
-		
-		Mostrar(*puntero);
-		system("pause");
+        system ("CLS");
+        
+        Mostrar(*puntero);
+        system("pause");
       break;
       case 5:
         
