@@ -2,6 +2,7 @@
 #include ".\Nodo.hpp"
 #include<windows.h>
 #include <iostream>
+//CONFIGURACIONES DE CURSOR
 static HANDLE cur; 
 static COORD pos;
 using namespace std;
