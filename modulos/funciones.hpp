@@ -36,8 +36,8 @@ void Mostrar(Nodo *aux){
 		cout<<"Vacia";
 	else{
 		while(aux!=NULL){
-			cout<<"\nSu id es: "<<aux->id;
-				cout<<"\nSu nota es de: "<<aux->nota;
+			cout<<"\nid: "<<aux->id;
+				cout<<",nota: "<<aux->nota;
 			aux=aux->sig;
 			
 		}
