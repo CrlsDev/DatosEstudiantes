@@ -65,6 +65,18 @@ bool Buscar(Nodo *aux,long id){
 	return NULL;
 
  }
+ Nodo*BuscarNota(Nodo*cab,float nota){
+	 Nodo*aux=NULL;
+	 while(cab!=NULL){
+		if(nota==cab->nota){
+			pilaMeter(aux,cab->id,nota);
+		}
+		cab=cab->sig;
+	}
+
+	return aux;
+
+ }
 
 int contar(Nodo *aux){
 	int c=0;

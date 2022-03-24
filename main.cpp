@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
           system("pause");
           break;
         }
-        long id; float nota;
+        {long id; float nota;
         do{
         system ("CLS");
         PosicionarCursor(45,15); cout<<"Digite id:";cin>>id;
@@ -100,7 +100,7 @@ int main(int argc, char** argv) {
         {
         colaMeter(cola,id,nota);
         }
-		
+		  }
         break;
       case 3: // prueba sacar
       if (puntero==NULL)
@@ -143,30 +143,67 @@ int main(int argc, char** argv) {
           system("pause");
           break;
         }
-        system ("CLS");
+        do
+        {
+          system ("CLS");
         
         PosicionarCursor(45,2); cout<<"BUSCAR\n";
         PosicionarCursor(40,6); cout<<"1.............Buscar por ID\n";
         PosicionarCursor(40,7); cout<<"2.............Buscar por Nota\n";
         PosicionarCursor(40,8); cout<<"3.............Regresar\n";
         PosicionarCursor(40,10);cout<<"Opcion: \n";
-        PosicionarCursor(48,10);cin>>bsc;
+        PosicionarCursor(48,10);cin>>opr;
         
-        switch (bsc)
+        switch (opr)
         {
           system ("CLS");
           
           case 1:
-          cout<<"prueba id \n";
-        
+          {
+            long id;
+            do
+            {
+            system("cls");
+            cout<<"Ingrese la id que quiere buscar: ";cin>>id;
+            } while (id<=0);
+            Nodo*iden=BuscarId(*puntero,id);
+            if (iden!=NULL)
+            {
+              cout<<"se encontro: "<<endl<<"id: "<<iden->id<<", nota: "<<iden->nota<<endl; 
+            }else{
+              cout<<"no se encontro la id: "<<id;
+            }
+            system("pause");
+          }
           break;
           case 2:
-          cout<<" prueba nota \n";
-
+          {
+            float nota;
+           do
+            {
+            system("cls");
+            cout<<"Ingrese la nota que quiere buscar: ";cin>>nota;
+            } while (!(nota>=0 && nota<=5));
+            Nodo*resultados=BuscarNota(*puntero,nota);
+            if (resultados!=NULL)
+            {
+              cout<<"se encontro: "<<endl;
+              Mostrar(resultados);
+            }else{
+              cout<<"no se encontro la nota: "<<nota;
+            }
+            system("pause");
+          }break;
+          case 3:
           break;
         
           default: cout<<" No se ha digitado una opcion valido \n";
         }
+
+        } while (opr!=3);
+        
+          
+        break;
       case 6: //Intercambio de datos
         do
           {
