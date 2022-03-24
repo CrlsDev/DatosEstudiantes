@@ -33,7 +33,7 @@ bool vacia(Nodo *cab){
 }
 void Mostrar(Nodo *aux){
 	if(aux==NULL)
-		cout<<"Vacia";
+		cout<<"Vacia"<<endl;
 	else{
 		while(aux!=NULL){
 			cout<<"\nid: "<<aux->id;
