@@ -56,8 +56,10 @@ bool Buscar(Nodo *aux,long id){
  Nodo*BuscarId(Nodo*cab,long id){
 	 while(cab!=NULL){
 		if(id==cab->id){
-			cab->sig=NULL;
-			return cab;
+			Nodo* aux = new Nodo;
+			aux->id=cab->id;
+			aux->nota = cab->nota;
+			return aux;
 
 		}
 		cab=cab->sig;
@@ -127,6 +129,20 @@ void colaSacarPilaMeter(Nodo*&cabc,Nodo*&cabp){
 	cabc=cabc->sig;
 	cabp->sig=aux;
 } 
+
+Nodo* UnirEstructuras(Nodo* cab1, Nodo* cab2){
+	Nodo* Union = cab1;
+	if (cab1==NULL && cab2!=NULL){
+		return cab2;
+	}
+	while(cab2!=NULL){
+		if (!Buscar(Union,cab2->id)){
+			pilaMeter(Union,cab2->id, cab2->nota);
+		}
+		cab2=cab2->sig;
+	}
+	return Union;
+}
 
 void PosicionarCursor(int x, int y){
    

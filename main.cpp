@@ -8,7 +8,7 @@ using namespace std;
 
 
 int main(int argc, char** argv) {
-  int op,op1,bsc,mov,opr, modo;
+  int op1,mov,opr, modo;
   Nodo*pila=NULL,*cola=NULL;
 
   Nodo**puntero=NULL;
@@ -55,39 +55,60 @@ int main(int argc, char** argv) {
         
         if (puntero==NULL)
         {
-          cout<<"elija un modo."<<endl;
+          cout<<"Elija un modo."<<endl;
           system("pause");
           break;
         }
-        {long id; float nota;
+        {
+          long id; float nota;
+          bool valido, copiado=false;
         do{
+          valido = true;
         system ("CLS");
         PosicionarCursor(45,15); cout<<"Digite id:";cin>>id;
         if (modo==1)
         {
           if (Buscar(pila,id)){
-          PosicionarCursor(45,17); cout<<"Esta id ya existe";
-          system("pause");
-          continue;
+            PosicionarCursor(45,17); cout<<"Esta id ya existe";
+            system("pause");
+            valido=false;
+            continue;
           }
-          if(Buscar(cola,id)){ // Pendiente
-          
+          Nodo* coincidencia = BuscarId(cola, id);
+          if (coincidencia!=NULL){
+            valido=false;
+            int pregunta;
+            do{
+              cout<<"La id que intente ingresar ya existe en el otro modo, Desea copiar el dato a la pila? 1. Si | 2. No";
+              cin>>pregunta;
+
+            }while(pregunta!=1 || pregunta!=2);
+            if ((valido=pregunta==1)){pilaMeter(pila, coincidencia->id, coincidencia->nota);copiado=true;}
           }
 
         }else if (modo==2){
           if (Buscar(cola,id)){
             PosicionarCursor(45,17); cout<<"Esta id ya existe";
             system("pause");
+            valido=false;
             continue;
           }
-          if(Buscar(pila,id)){ // Pendiente
-          
+          Nodo* coincidencia = BuscarId(pila, id);
+          if (coincidencia!=NULL){
+            valido=false;
+            int pregunta;
+            do{
+              cout<<"La id que intente ingresar ya existe en el otro modo, Desea copiar el dato a la cola? 1. Si | 2. No";
+              cin>>pregunta;
+
+            }while(pregunta!=1 && pregunta!=2);
+            if ((valido=pregunta==1)){colaMeter(cola, coincidencia->id, coincidencia->nota);copiado=true;}
           }
         
         }
         
-        } while ((id<=0));
-        do{
+        } while ((id<=0) || !valido);
+        if (!copiado){do{
         system ("CLS");
         PosicionarCursor(45,15); cout<<"Digite id:"<<id;
         PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):";cin>>nota;
@@ -99,13 +120,13 @@ int main(int argc, char** argv) {
         }else if (modo==2)
         {
         colaMeter(cola,id,nota);
-        }
+        }}
 		  }
         break;
       case 3: // prueba sacar
       if (puntero==NULL)
         {
-          cout<<"elija un modo."<<endl;
+          cout<<"Elija un modo."<<endl;
           system("pause");
           break;
         }
@@ -126,7 +147,7 @@ int main(int argc, char** argv) {
       case 4: //mostrar
       if (puntero==NULL)
         {
-          cout<<"elija un modo."<<endl;
+          cout<<"Elija un modo."<<endl;
           system("pause");
           break;
         }
@@ -139,7 +160,7 @@ int main(int argc, char** argv) {
       case 5: // BUSCAR
         if (puntero==NULL)
         {
-          cout<<"elija un modo."<<endl;
+          cout<<"Elija un modo."<<endl;
           system("pause");
           break;
         }
@@ -156,8 +177,6 @@ int main(int argc, char** argv) {
         
         switch (opr)
         {
-          system ("CLS");
-          
           case 1:
           {
             long id;
@@ -179,10 +198,9 @@ int main(int argc, char** argv) {
           case 2:
           {
             float nota;
-           do
-            {
-            system("cls");
-            cout<<"Ingrese la nota que quiere buscar: ";cin>>nota;
+            do{
+              system("cls");
+              cout<<"Ingrese la nota que quiere buscar: ";cin>>nota;
             } while (!(nota>=0 && nota<=5));
             Nodo*resultados=BuscarNota(*puntero,nota);
             if (resultados!=NULL)
@@ -193,14 +211,15 @@ int main(int argc, char** argv) {
               cout<<"no se encontro la nota: "<<nota;
             }
             system("pause");
-          }break;
+          }
+          break;
           case 3:
           break;
-        
+
           default: cout<<" No se ha digitado una opcion valido \n";
         }
 
-        } while (opr!=3);
+          } while (opr!=3);
         
           
         break;
@@ -214,11 +233,10 @@ int main(int argc, char** argv) {
           PosicionarCursor(40,7); cout<<"2.............Mover datos de Pila a Cola\n";
           PosicionarCursor(40,8); cout<<"3.............Regresar\n";
           PosicionarCursor(40,10);cout<<"Opcion: \n";
-          PosicionarCursor(48,10);cin>>mov;
+          PosicionarCursor(48,10);cin>>opr;
         
-          switch (mov)
+          switch (opr)
         {
-          system ("CLS");
           
           case 1:
           cout<<"cola a fila prueba\n";
@@ -233,12 +251,12 @@ int main(int argc, char** argv) {
         
           default: cout<<" No se ha digitado una opcion valido \n";
         }
-          } while (mov!=3);
+          } while (opr!=3);
         break;
       case 7: // operar
       if (puntero==NULL)
         {
-          cout<<"elija un modo."<<endl;
+          cout<<"Elija un modo."<<endl;
           system("pause");
           break;
         }
@@ -280,7 +298,7 @@ int main(int argc, char** argv) {
       case 8: // respaldo
       if (puntero==NULL)
         {
-          cout<<"elija un modo."<<endl;
+          cout<<"Elija un modo."<<endl;
           system("pause");
           break;
         }
@@ -302,28 +320,48 @@ int main(int argc, char** argv) {
         {
           
           case 1:
-          *puntero=Cargar();
-          if (*puntero==NULL)
-          {
-            cout<<"No hay nada que cargar o el archivo no existe"<<endl;
-          }else{
-            cout<<"Se cargaron datos con exito"<<endl;
-          }
-            system("pause");
-          break;
-          case 2:
-          if (Guardar(*puntero))
-          {
-            cout<<"Se guardo con exito."<<endl;
-          }else{
-            cout<<"no se pudo guardar."<<endl;
-          }
-          system("pause");
-          break;
-          case 3:
-          
+            {Nodo*auxiliar_carga=Cargar();
+              int pregunta;
+            if (auxiliar_carga==NULL)
+            {
+              cout<<"No hay nada que cargar o el archivo no existe"<<endl;
+            }else{
+              if(vacia(*puntero)){
+                pregunta=1;
+                cout<<"Se cargaron datos con exito"<<endl;
 
-          break;
+              }
+              else{
+                do{
+                  system("cls");
+                  cout<<"Es posible que pierda datos que metio, Desea continuar? 1. Si | 2. No";
+                  cin>>pregunta;
+                }while(pregunta!=1 || pregunta!=2);
+              }
+              if (pregunta==1) *puntero = auxiliar_carga;
+            }
+              system("pause");}
+            break;
+          case 2:
+            if (Guardar(*puntero))
+            {
+              cout<<"Se guardo con exito."<<endl;
+            }else{
+              cout<<"no se pudo guardar."<<endl;
+            }
+            system("pause");
+            break;
+          case 3:
+            {Nodo* U = UnirEstructuras(pila,cola);
+            if (Guardar(U))
+            {
+              cout<<"Se guardo con exito."<<endl;
+            }else{
+              cout<<"no se pudo guardar."<<endl;
+            }
+            
+            system("pause");}
+            break;
           case 4:
           break;
         

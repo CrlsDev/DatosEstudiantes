@@ -7,10 +7,10 @@
 
 #define SEPARADOR ";"
 
-#define ARCHIVO "notas_estudiantes"
+#define DIR_ARCHIVO "./Datos/notas_estudiantes"
 
-bool Guardar(Nodo* cab,const char* nombre = ARCHIVO){
-  std::ofstream archivo(std::string("./Datos/"+std::string(nombre)).c_str());
+bool Guardar(Nodo* cab,const char* dir = DIR_ARCHIVO){
+  std::ofstream archivo(std::string(dir).c_str());
   if (!archivo) return false;
 
   while (cab!=NULL){
@@ -20,8 +20,8 @@ bool Guardar(Nodo* cab,const char* nombre = ARCHIVO){
   archivo.close();
   return true;
 }
-Nodo* Cargar(const char* nombre = ARCHIVO){
-  std::ifstream archivo(std::string("./Datos/"+std::string(nombre)).c_str());
+Nodo* Cargar(const char* dir = DIR_ARCHIVO){
+  std::ifstream archivo(std::string(dir).c_str());
   if (!archivo) return NULL;
   Nodo* cab = NULL;
   std::string linea;
