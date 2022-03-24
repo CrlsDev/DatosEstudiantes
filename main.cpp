@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
             valido=false;
             int pregunta;
             do{
-              cout<<"La id que intente ingresar ya existe en el otro modo, Desea copiar el dato a la pila? 1. Si | 2. No";
+              cout<<"La id que intente ingresar ya existe en el otro modo, Desea copiar el dato a la pila?\n 1. Si | 2. No\n";
               cin>>pregunta;
 
             }while(pregunta!=1 || pregunta!=2);
@@ -99,7 +99,7 @@ int main(int argc, char** argv) {
             valido=false;
             int pregunta;
             do{
-              cout<<"La id que intente ingresar ya existe en el otro modo, Desea copiar el dato a la cola? 1. Si | 2. No";
+              cout<<"La id que intente ingresar ya existe en el otro modo, Desea copiar el dato a la cola?\n 1. Si | 2. No\n";
               cin>>pregunta;
 
             }while(pregunta!=1 && pregunta!=2);
@@ -134,10 +134,11 @@ int main(int argc, char** argv) {
         }
        { 
           Nodo*datoSacar=sacar(*puntero); 
-          if (datoSacar!=NULL)
-          {
-          cout<<"Saco : "<<datoSacar->id;
-          cout<<","<<datoSacar->nota<<endl;
+          PosicionarCursor(45,18);
+          if (datoSacar!=NULL){
+          cout<<"Saco : ";
+          PosicionarCursor(45,20);
+          cout<<"ID: "<<datoSacar->id<<", NOTA: "<<datoSacar->nota<<endl;
           }else
           {
             cout<<"la estructura esta vacia."<<endl;
@@ -280,14 +281,14 @@ int main(int argc, char** argv) {
           case 1:
           {cout<<"Contar prueba\n";
           int conteo=contar(*puntero);
-          cout<<"El total de las notas guardas es: "<<conteo<<endl;
-          system("pause");}
+          PosicionarCursor(48,12);cout<<"El total de las notas guardas es: "<<conteo<<endl;
+          PosicionarCursor(48,14);system("pause");}
           break;
           case 2:{
           cout<<"promediar prueba \n";
           float prom=promedio(*puntero);
-          cout<<"El promedio de las notas es: "<<prom<<endl;}
-          system("pause");
+          PosicionarCursor(48,12);cout<<"El promedio de las notas es: "<<prom<<endl;}
+          PosicionarCursor(48,14);system("pause");
           break;
           case 3:
           break;
@@ -337,7 +338,7 @@ int main(int argc, char** argv) {
               else{
                 do{
                   system("cls");
-                  cout<<"Es posible que pierda datos que metio, Desea continuar? 1. Si | 2. No";
+                  cout<<"Es posible que pierda datos que metio, Desea continuar?\n 1. Si | 2. No\n";
                   cin>>pregunta;
                 }while(pregunta!=1 || pregunta!=2);
               }
