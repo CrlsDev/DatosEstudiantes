@@ -281,14 +281,14 @@ int main(int argc, char** argv) {
           case 1:
           {cout<<"Contar prueba\n";
           int conteo=contar(*puntero);
-          PosicionarCursor(48,12);cout<<"El total de las notas guardas es: "<<conteo<<endl;
-          PosicionarCursor(48,14);system("pause");}
+          PosicionarCursor(40,12);cout<<"El total de las notas guardas es: "<<conteo<<endl;
+          PosicionarCursor(40,14);system("pause");}
           break;
           case 2:{
           cout<<"promediar prueba \n";
           float prom=promedio(*puntero);
-          PosicionarCursor(48,12);cout<<"El promedio de las notas es: "<<prom<<endl;}
-          PosicionarCursor(48,14);system("pause");
+          PosicionarCursor(40,12);cout<<"El promedio de las notas es: "<<prom<<endl;}
+          PosicionarCursor(40,14);system("pause");
           break;
           case 3:
           break;
@@ -351,7 +351,7 @@ int main(int argc, char** argv) {
             {
               cout<<"Se guardo con exito."<<endl;
             }else{
-              cout<<"no se pudo guardar."<<endl;
+              cout<<"No se pudo guardar. Puede que tenga que crear una carpeta llamada 'Datos' o que el programa no tenga permisos."<<endl;
             }
             system("pause");
             break;
