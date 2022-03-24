@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
         if (modo==1)
         {
           if (Buscar(pila,id)){
-            PosicionarCursor(45,17); cout<<"Esta id ya existe";
+            PosicionarCursor(45,17); cout<<"Esta id ya existe"<<endl;
             system("pause");
             valido=false;
             continue;
@@ -89,7 +89,7 @@ int main(int argc, char** argv) {
 
         }else if (modo==2){
           if (Buscar(cola,id)){
-            PosicionarCursor(45,17); cout<<"Esta id ya existe";
+            PosicionarCursor(45,17); cout<<"Esta id ya existe"<<endl;
             system("pause");
             valido=false;
             continue;
@@ -219,7 +219,7 @@ int main(int argc, char** argv) {
           case 3:
           break;
 
-          default: cout<<" No se ha digitado una opcion valido \n";
+          default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
         }
 
 
@@ -253,7 +253,7 @@ int main(int argc, char** argv) {
           case 3:
           break;
         
-          default: cout<<" No se ha digitado una opcion valido \n";
+          default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
         }
           } while (opr!=3);
         break;
@@ -293,7 +293,7 @@ int main(int argc, char** argv) {
           case 3:
           break;
     
-        default: cout<<" No se ha digitado una opcion valido \n"; break;
+        default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n"; break;
         }
           } while (opr!=3);
         
@@ -361,7 +361,7 @@ int main(int argc, char** argv) {
             {
               cout<<"Se guardo con exito."<<endl;
             }else{
-              cout<<"no se pudo guardar."<<endl;
+              cout<<"No se pudo guardar."<<endl;
             }
             
             system("pause");}
@@ -369,13 +369,13 @@ int main(int argc, char** argv) {
           case 4:
           break;
         
-        default: cout<<" No se ha digitado una opcion valido \n";
+        default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
         }
         } while (opr!=4);
         break;
       case 9:
         break; 
-      default: cout<<" No se ha digitado una opcion valido \n";
+      default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
     }
     
 
