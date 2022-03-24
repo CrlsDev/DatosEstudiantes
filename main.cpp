@@ -65,6 +65,7 @@ int main(int argc, char** argv) {
         do{
           valido = true;
         system ("CLS");
+        PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
         PosicionarCursor(45,15); cout<<"Digite id:";cin>>id;
         if (modo==1)
         {
@@ -110,6 +111,7 @@ int main(int argc, char** argv) {
         } while ((id<=0) || !valido);
         if (!copiado){do{
         system ("CLS");
+        PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
         PosicionarCursor(45,15); cout<<"Digite id:"<<id;
         PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):";cin>>nota;
         } while (!(nota<=5 && nota>=0));
@@ -218,6 +220,7 @@ int main(int argc, char** argv) {
 
           default: cout<<" No se ha digitado una opcion valido \n";
         }
+
 
           } while (opr!=3);
         
