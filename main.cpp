@@ -154,7 +154,6 @@ int main(int argc, char** argv) {
           system("pause");
           break;
         }
-        cout<<"Prueba mostrar \n";
         system ("CLS");
         
         Mostrar(*puntero);
@@ -243,12 +242,20 @@ int main(int argc, char** argv) {
         {
           
           case 1:
-          cout<<"cola a fila prueba\n";
           colaSacarPilaMeter(cola,pila);
+          cout<<"COLA: ";
+          Mostrar(cola);
+          cout<<endl<<"\nPILA: ";
+          Mostrar(pila);
+          system("pause");
           break;
           case 2:
-          cout<<"fila a cola prueba\n";
           pilaSacarColaMeter(pila,cola);
+          cout<<"PILA: ";
+          Mostrar(pila);
+          cout<<endl<<"\nCOLA: ";
+          Mostrar(cola);
+          system("pause");
           break;
           case 3:
           break;
@@ -279,13 +286,12 @@ int main(int argc, char** argv) {
         {
           
           case 1:
-          {cout<<"Contar prueba\n";
+          {
           int conteo=contar(*puntero);
           PosicionarCursor(40,12);cout<<"El total de las notas guardas es: "<<conteo<<endl;
           PosicionarCursor(40,14);system("pause");}
           break;
           case 2:{
-          cout<<"promediar prueba \n";
           float prom=promedio(*puntero);
           PosicionarCursor(40,12);cout<<"El promedio de las notas es: "<<prom<<endl;}
           PosicionarCursor(40,14);system("pause");
