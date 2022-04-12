@@ -346,7 +346,7 @@ int main(int argc, char** argv) {
                   system("cls");
                   cout<<"Es posible que pierda datos que metio, Desea continuar?\n 1. Si | 2. No\n";
                   cin>>pregunta;
-                }while(pregunta!=1 || pregunta!=2);
+                }while(pregunta!=1 && pregunta!=2);
               }
               if (pregunta==1) *puntero = auxiliar_carga;
             }
@@ -381,7 +381,7 @@ int main(int argc, char** argv) {
         break;
       case 9:
         break; 
-      default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
+      default:PosicionarCursor(0,20); cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
     }
     
 
