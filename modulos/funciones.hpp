@@ -6,17 +6,15 @@
 static HANDLE cur; 
 static COORD pos;
 using namespace std;
-void pilaMeter(Nodo *&cab,long id,float nota){
+void pilaMeter(Nodo *&cab,Estudiante* e){
 	Nodo *aux=new Nodo;
-	aux->id=id;
-	aux->nota=nota;
+	aux->estudiante=e;
 	aux->sig=cab;
 	cab=aux;
 }
-void colaMeter(Nodo *&cab,long id,float nota){
+void colaMeter(Nodo *&cab,Estudiante* e){
 	Nodo *aux=new Nodo;
-	aux->id=id;
-	aux->nota=nota;
+	aux->estudiante=e;
 	aux->sig=NULL;
 	if(cab==NULL)
 		cab=aux;
@@ -31,13 +29,22 @@ void colaMeter(Nodo *&cab,long id,float nota){
 bool vacia(Nodo *cab){
 	return cab==NULL;
 }
+
+void mostrarEstudiante(Estudiante* e){
+	cout<<"\nid: "<<e->id;
+				cout<<",nota: "<<e->nota;
+       cout<<",nombre: "<<e->nombre;
+}
 void Mostrar(Nodo *aux){
 	if(aux==NULL)
 		cout<<"Vacia"<<endl;
 	else{
 		while(aux!=NULL){
-			cout<<"\nid: "<<aux->id;
-				cout<<",nota: "<<aux->nota;
+				cout<<"\nid: "<<aux->estudiante->id;
+				cout<<",nota: "<<aux->estudiante->nota;
+       cout<<",nombre: "<<aux->estudiante->nombre;
+			 system("pause");
+			mostrarEstudiante(aux->estudiante);
 			aux=aux->sig;
 			
 		}
@@ -46,19 +53,18 @@ void Mostrar(Nodo *aux){
 }
 
 bool Buscar(Nodo *aux,long id){
+	
 	while(aux!=NULL){
-		if(id==aux->id)
+		if(id==aux->estudiante->id)
 			return true;
 		aux=aux->sig;
 	}
 	return false;
 }
- Nodo*BuscarId(Nodo*cab,long id){
+ Estudiante*BuscarId(Nodo*cab,long id){
 	 while(cab!=NULL){
-		if(id==cab->id){
-			Nodo* aux = new Nodo;
-			aux->id=cab->id;
-			aux->nota = cab->nota;
+		if(id==cab->estudiante->id){
+	Estudiante* aux=cab->estudiante;
 			return aux;
 
 		}
@@ -70,8 +76,8 @@ bool Buscar(Nodo *aux,long id){
  Nodo*BuscarNota(Nodo*cab,float nota){
 	 Nodo*aux=NULL;
 	 while(cab!=NULL){
-		if(nota==cab->nota){
-			pilaMeter(aux,cab->id,nota);
+		if(nota==cab->estudiante->nota){
+			pilaMeter(aux,cab->estudiante);
 		}
 		cab=cab->sig;
 	}
@@ -79,7 +85,18 @@ bool Buscar(Nodo *aux,long id){
 	return aux;
 
  }
+Nodo*BuscarNombre(Nodo*cab,string Nombre){
+	 Nodo*aux=NULL;
+	 while(cab!=NULL){
+		if(Nombre==cab->estudiante->nombre){
+			pilaMeter(aux,cab->estudiante);
+		}
+		cab=cab->sig;
+	}
 
+	return aux;
+
+ }
 int contar(Nodo *aux){
 	int c=0;
 	while(aux!=NULL){
@@ -91,19 +108,22 @@ float promedio(Nodo*aux){
 	float suma=0;
 	int conteo=0;
 	while(aux!=NULL){
-	suma=suma+aux->nota;
+	suma=suma+aux->estudiante->nota;
 	aux=aux->sig;
 	conteo++;
 	}
  return suma/conteo;}
 	
 	
-Nodo* sacar(Nodo *&cab){
+Estudiante* sacar(Nodo *&cab){
 	if(cab==NULL)
 		return NULL;
+	
 	Nodo *aux=cab;
     cab=cab->sig;
-	return aux;
+	Estudiante* saca=aux->estudiante;
+	delete aux;
+	return saca;
 }
 
 void pilaSacarColaMeter(Nodo*&cabp,Nodo*&cabc){
@@ -136,8 +156,8 @@ Nodo* UnirEstructuras(Nodo* cab1, Nodo* cab2){
 		return cab2;
 	}
 	while(cab2!=NULL){
-		if (!Buscar(Union,cab2->id)){
-			pilaMeter(Union,cab2->id, cab2->nota);
+		if (!Buscar(Union,cab2->estudiante->id)){
+			pilaMeter(Union,cab2->estudiante);
 		}
 		cab2=cab2->sig;
 	}

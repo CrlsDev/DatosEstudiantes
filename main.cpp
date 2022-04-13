@@ -60,22 +60,23 @@ int main(int argc, char** argv) {
           break;
         }
         {
-          long id; float nota;
+          //long id; float nota; const char* nombre;
+          Estudiante e;
           bool valido, copiado=false;
         do{
           valido = true;
         system ("CLS");
         PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
-        PosicionarCursor(45,15); cout<<"Digite id:";cin>>id;
+        PosicionarCursor(45,15); cout<<"Digite id:";cin>>e.id;
         if (modo==1)
         {
-          if (Buscar(pila,id)){
+          if (Buscar(pila,e.id)){
             PosicionarCursor(45,17); cout<<"Esta id ya existe"<<endl;
             system("pause");
             valido=false;
             continue;
           }
-          Nodo* coincidencia = BuscarId(cola, id);
+          Estudiante* coincidencia = BuscarId(cola,e.id);
           if (coincidencia!=NULL){
             valido=false;
             int pregunta;
@@ -84,17 +85,17 @@ int main(int argc, char** argv) {
               cin>>pregunta;
 
             }while(pregunta!=1 || pregunta!=2);
-            if ((valido=pregunta==1)){pilaMeter(pila, coincidencia->id, coincidencia->nota);copiado=true;}
+            if ((valido=pregunta==1)){pilaMeter(pila, coincidencia);copiado=true;}
           }
 
         }else if (modo==2){
-          if (Buscar(cola,id)){
+          if (Buscar(cola,e.id)){
             PosicionarCursor(45,17); cout<<"Esta id ya existe"<<endl;
             system("pause");
             valido=false;
             continue;
           }
-          Nodo* coincidencia = BuscarId(pila, id);
+          Estudiante* coincidencia = BuscarId(pila,e.id);
           if (coincidencia!=NULL){
             valido=false;
             int pregunta;
@@ -103,27 +104,38 @@ int main(int argc, char** argv) {
               cin>>pregunta;
 
             }while(pregunta!=1 && pregunta!=2);
-            if ((valido=pregunta==1)){colaMeter(cola, coincidencia->id, coincidencia->nota);copiado=true;}
+            if ((valido=pregunta==1)){colaMeter(cola, coincidencia);copiado=true;}
           }
         
         }
         
-        } while ((id<=0) || !valido);
-        if (!copiado){do{
+        } while ((e.id<=0) || !valido);
+        if (!copiado){
+        do{
         system ("CLS");
         PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
-        PosicionarCursor(45,15); cout<<"Digite id:"<<id;
-        PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):";cin>>nota;
-        } while (!(nota<=5 && nota>=0));
+        PosicionarCursor(45,15); cout<<"Digite id:"<<e.id;
+        PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):";cin>>e.nota;
+        } while (!(e.nota<=5 && e.nota>=0));
+        
+      
+        system ("CLS");
+        PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
+        PosicionarCursor(45,15); cout<<"Digite id:"<<e.id;
+        PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):"<<e.nota;
+        PosicionarCursor(45,17); cout<<"Digite el nombre del estudiante:";cin>>e.nombre;
+        cout<<"\n nombre: "<<e.nombre;
+        system("pause");
 
         if (modo==1)
         {
-        pilaMeter(pila,id,nota);
+        pilaMeter(pila,&e);
         }else if (modo==2)
         {
-        colaMeter(cola,id,nota);
+        colaMeter(cola,&e);
         }}
 		  }
+      
         break;
       case 3: // prueba sacar
       if (puntero==NULL)
@@ -133,12 +145,12 @@ int main(int argc, char** argv) {
           break;
         }
        { 
-          Nodo*datoSacar=sacar(*puntero); 
+          Estudiante*datoSacar=sacar(*puntero); 
           PosicionarCursor(45,18);
           if (datoSacar!=NULL){
           cout<<"Saco : ";
           PosicionarCursor(45,20);
-          cout<<"ID: "<<datoSacar->id<<", NOTA: "<<datoSacar->nota<<endl;
+          mostrarEstudiante(datoSacar);
           }else
           {
             cout<<"la estructura esta vacia."<<endl;
@@ -147,6 +159,7 @@ int main(int argc, char** argv) {
           system("pause");
          }
       break;
+
       case 4: //mostrar
       if (puntero==NULL)
         {
@@ -159,6 +172,7 @@ int main(int argc, char** argv) {
         Mostrar(*puntero);
         system("pause");
       break;
+
       case 5: // BUSCAR
         if (puntero==NULL)
         {
@@ -173,9 +187,10 @@ int main(int argc, char** argv) {
         PosicionarCursor(45,2); cout<<"BUSCAR\n";
         PosicionarCursor(40,6); cout<<"1.............Buscar por ID\n";
         PosicionarCursor(40,7); cout<<"2.............Buscar por Nota\n";
-        PosicionarCursor(40,8); cout<<"3.............Regresar\n";
-        PosicionarCursor(40,10);cout<<"Opcion: \n";
-        PosicionarCursor(48,10);cin>>opr;
+        PosicionarCursor(40,8); cout<<"3.............Buscar por Nombre\n";
+        PosicionarCursor(40,9); cout<<"4.............Regresar\n";
+        PosicionarCursor(40,11);cout<<"Opcion: \n";
+        PosicionarCursor(48,11);cin>>opr;
         
         switch (opr)
         {
@@ -187,10 +202,10 @@ int main(int argc, char** argv) {
             system("cls");
             cout<<"Ingrese la id que quiere buscar: ";cin>>id;
             } while (id<=0);
-            Nodo*iden=BuscarId(*puntero,id);
+            Estudiante*iden=BuscarId(*puntero,id);
             if (iden!=NULL)
             {
-              cout<<"se encontro: "<<endl<<"id: "<<iden->id<<", nota: "<<iden->nota<<endl; 
+              cout<<"se encontro: "<<endl;mostrarEstudiante(iden); 
             }else{
               cout<<"no se encontro la id: "<<id;
             }
@@ -215,14 +230,32 @@ int main(int argc, char** argv) {
             system("pause");
           }
           break;
+
           case 3:
+          {
+            string nombre;
+         
+              system("cls");
+              cout<<"Ingrese el nombre que quiere buscar: ";cin>>nombre;
+          
+            Nodo*resultados=BuscarNombre(*puntero,nombre);
+            if (resultados!=NULL)
+            {
+              cout<<"se encontro: "<<endl;
+              Mostrar(resultados);
+            }else{
+              cout<<"no se encontro el nombre: "<<nombre;
+            }
+            system("pause");
+          }
+          break;
+
+          case 4:
           break;
 
           default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
         }
-
-
-          } while (opr!=3);
+          } while (opr!=4);
         
           
         break;

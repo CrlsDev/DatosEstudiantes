@@ -14,7 +14,7 @@ bool Guardar(Nodo* cab,const char* dir = DIR_ARCHIVO){
   if (!archivo) return false;
 
   while (cab!=NULL){
-    archivo<<cab->id<<SEPARADOR<<cab->nota<<std::endl;
+    archivo<<cab->estudiante->id<<SEPARADOR<<cab->estudiante->nota<<std::endl;
     cab = cab->sig;
   }
   archivo.close();
@@ -25,18 +25,17 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
   if (!archivo) return NULL;
   Nodo* cab = NULL;
   std::string linea;
-  long id;
+  Estudiante e;
   std::stringstream * conversion;
-  float nota;
   while(!archivo.eof()){
     std::getline(archivo,linea);
     int sep = linea.find_first_of(SEPARADOR);
     if (sep != std::string::npos){
       conversion = new std::stringstream();
-      *conversion<<linea.substr(0,sep); *conversion>>id;
+      *conversion<<linea.substr(0,sep); *conversion>>e.id;
       conversion = new std::stringstream();
-      *conversion<<linea.substr(sep+1, linea.length()-sep); *conversion>>nota;
-      colaMeter(cab,id,nota);
+      *conversion<<linea.substr(sep+1, linea.length()-sep); *conversion>>e.nota;
+      colaMeter(cab,&e);
     }
   }
   return cab; 

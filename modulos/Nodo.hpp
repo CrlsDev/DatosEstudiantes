@@ -1,16 +1,13 @@
 #pragma once
-
+#include <string>
+using namespace std;
 struct Estudiante{
 	long id;
   float nota;
-	int edad;
-	const char* nombre, *apellido, *correo;
-	long long telefono;
-	
+	string nombre;
 };
-
 struct Nodo{
-  Estudiante estudiante;
+  Estudiante* estudiante;
   Nodo* sig;
 };
 
