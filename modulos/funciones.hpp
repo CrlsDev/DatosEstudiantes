@@ -8,9 +8,11 @@ static COORD pos;
 using namespace std;
 void pilaMeter(Nodo *&cab,Estudiante* e){
 	Nodo *aux=new Nodo;
+
 	aux->estudiante=e;
 	aux->sig=cab;
 	cab=aux;
+
 }
 void colaMeter(Nodo *&cab,Estudiante* e){
 	Nodo *aux=new Nodo;
@@ -40,10 +42,6 @@ void Mostrar(Nodo *aux){
 		cout<<"Vacia"<<endl;
 	else{
 		while(aux!=NULL){
-				cout<<"\nid: "<<aux->estudiante->id;
-				cout<<",nota: "<<aux->estudiante->nota;
-       cout<<",nombre: "<<aux->estudiante->nombre;
-			 system("pause");
 			mostrarEstudiante(aux->estudiante);
 			aux=aux->sig;
 			

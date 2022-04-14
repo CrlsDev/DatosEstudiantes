@@ -14,7 +14,7 @@ bool Guardar(Nodo* cab,const char* dir = DIR_ARCHIVO){
   if (!archivo) return false;
 
   while (cab!=NULL){
-    archivo<<cab->estudiante->id<<SEPARADOR<<cab->estudiante->nota<<std::endl;
+    archivo<<cab->estudiante->id<<SEPARADOR<<cab->estudiante->nota<<SEPARADOR<<cab->estudiante->nombre<<std::endl;
     cab = cab->sig;
   }
   archivo.close();
@@ -34,7 +34,8 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
       conversion = new std::stringstream();
       *conversion<<linea.substr(0,sep); *conversion>>e.id;
       conversion = new std::stringstream();
-      *conversion<<linea.substr(sep+1, linea.length()-sep); *conversion>>e.nota;
+      *conversion<<linea.substr(sep+1,linea.substr(sep+1, linea.length()-sep).find_first_of(SEPARADOR)); *conversion>>e.nota;
+      e.nombre=linea.substr(linea.substr(sep+1, linea.length()-sep).find_first_of(SEPARADOR)+1,linea.length()-linea.substr(sep+1, linea.length()-sep).find_first_of(SEPARADOR));
       colaMeter(cab,&e);
     }
   }

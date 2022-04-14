@@ -61,22 +61,22 @@ int main(int argc, char** argv) {
         }
         {
           //long id; float nota; const char* nombre;
-          Estudiante e;
+          Estudiante* e=new Estudiante;
           bool valido, copiado=false;
         do{
           valido = true;
         system ("CLS");
         PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
-        PosicionarCursor(45,15); cout<<"Digite id:";cin>>e.id;
+        PosicionarCursor(45,15); cout<<"Digite id:";cin>>e->id;
         if (modo==1)
         {
-          if (Buscar(pila,e.id)){
+          if (Buscar(pila,e->id)){
             PosicionarCursor(45,17); cout<<"Esta id ya existe"<<endl;
             system("pause");
             valido=false;
             continue;
           }
-          Estudiante* coincidencia = BuscarId(cola,e.id);
+          Estudiante* coincidencia = BuscarId(cola,e->id);
           if (coincidencia!=NULL){
             valido=false;
             int pregunta;
@@ -89,13 +89,13 @@ int main(int argc, char** argv) {
           }
 
         }else if (modo==2){
-          if (Buscar(cola,e.id)){
+          if (Buscar(cola,e->id)){
             PosicionarCursor(45,17); cout<<"Esta id ya existe"<<endl;
             system("pause");
             valido=false;
             continue;
           }
-          Estudiante* coincidencia = BuscarId(pila,e.id);
+          Estudiante* coincidencia = BuscarId(pila,e->id);
           if (coincidencia!=NULL){
             valido=false;
             int pregunta;
@@ -109,30 +109,30 @@ int main(int argc, char** argv) {
         
         }
         
-        } while ((e.id<=0) || !valido);
+        } while ((e->id<=0) || !valido);
         if (!copiado){
         do{
         system ("CLS");
         PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
-        PosicionarCursor(45,15); cout<<"Digite id:"<<e.id;
-        PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):";cin>>e.nota;
-        } while (!(e.nota<=5 && e.nota>=0));
+        PosicionarCursor(45,15); cout<<"Digite id:"<<e->id;
+        PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):";cin>>e->nota;
+        } while (!(e->nota<=5 && e->nota>=0));
         
       
         system ("CLS");
         PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
-        PosicionarCursor(45,15); cout<<"Digite id:"<<e.id;
-        PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):"<<e.nota;
-        PosicionarCursor(45,17); cout<<"Digite el nombre del estudiante:";cin>>e.nombre;
-        cout<<"\n nombre: "<<e.nombre;
-        system("pause");
+        PosicionarCursor(45,15); cout<<"Digite id:"<<e->id;
+        PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):"<<e->nota;
+        
+        PosicionarCursor(45,17); cout<<"Digite el nombre del estudiante:";cin>>e->nombre;
+
 
         if (modo==1)
         {
-        pilaMeter(pila,&e);
+        pilaMeter(pila,e);
         }else if (modo==2)
         {
-        colaMeter(cola,&e);
+        colaMeter(cola,e);
         }}
 		  }
       
@@ -167,6 +167,7 @@ int main(int argc, char** argv) {
           system("pause");
           break;
         }
+        
         system ("CLS");
         
         Mostrar(*puntero);
