@@ -13,10 +13,10 @@ int main(int argc, char** argv) {
 
   Nodo**puntero=NULL;
   const char* texto_modo = "(NO SE HA ELEGIDO MODO)"; 
-    
+
 
   do{
-    
+
     system ("CLS");
     PosicionarCursor(45,2); cout<<"MENU PRINCIPAL "<<texto_modo<<"\n";
     PosicionarCursor(40,6); cout<<"1.............Elegir modo\n";

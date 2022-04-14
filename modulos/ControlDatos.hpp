@@ -6,38 +6,47 @@
 #include ".\Nodo.hpp"
 
 #define SEPARADOR ";"
-
+#define C_DATOS 3
 #define DIR_ARCHIVO "./Datos/notas_estudiantes"
-
+using namespace std;
 bool Guardar(Nodo* cab,const char* dir = DIR_ARCHIVO){
-  std::ofstream archivo(std::string(dir).c_str());
+  ofstream archivo(string(dir).c_str());
   if (!archivo) return false;
 
   while (cab!=NULL){
-    archivo<<cab->estudiante->id<<SEPARADOR<<cab->estudiante->nota<<SEPARADOR<<cab->estudiante->nombre<<std::endl;
+    archivo<<cab->estudiante->id<<SEPARADOR<<cab->estudiante->nota<<SEPARADOR<<cab->estudiante->nombre<<SEPARADOR<<endl;
     cab = cab->sig;
   }
   archivo.close();
   return true;
 }
 Nodo* Cargar(const char* dir = DIR_ARCHIVO){
-  std::ifstream archivo(std::string(dir).c_str());
+  ifstream archivo(string(dir).c_str());
   if (!archivo) return NULL;
   Nodo* cab = NULL;
-  std::string linea;
-  Estudiante e;
-  std::stringstream * conversion;
+  string linea;
+  Estudiante *e=new Estudiante;
+  stringstream * conversion;
   while(!archivo.eof()){
-    std::getline(archivo,linea);
-    int sep = linea.find_first_of(SEPARADOR);
-    if (sep != std::string::npos){
-      conversion = new std::stringstream();
-      *conversion<<linea.substr(0,sep); *conversion>>e.id;
-      conversion = new std::stringstream();
-      *conversion<<linea.substr(sep+1,linea.substr(sep+1, linea.length()-sep).find_first_of(SEPARADOR)); *conversion>>e.nota;
-      e.nombre=linea.substr(linea.substr(sep+1, linea.length()-sep).find_first_of(SEPARADOR)+1,linea.length()-linea.substr(sep+1, linea.length()-sep).find_first_of(SEPARADOR));
-      colaMeter(cab,&e);
+    getline(archivo,linea);
+    string datos[C_DATOS];
+    int i=0,num_c=0;
+    cout<<endl<<"En prueba: "<<linea<<endl;  
+    for (int j=0;j<C_DATOS;j++){
+      if (j==0) num_c = linea.find(SEPARADOR);
+      else {
+        i=i+num_c+1;
+        num_c=linea.find(SEPARADOR,i)-i;
+      }
+      if (num_c==string::npos) return NULL;
+      datos[j]=linea.substr(i,num_c);
     }
+    conversion = new stringstream();
+    *conversion<<datos[0]; *conversion>>e->id;
+    conversion = new stringstream();
+    *conversion<<datos[1]; *conversion>>e->nota;
+    e->nombre=datos[2];
+    colaMeter(cab,e);
   }
   return cab; 
 }
