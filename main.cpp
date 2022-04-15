@@ -368,7 +368,7 @@ int main(int argc, char** argv) {
               int pregunta;
             if (auxiliar_carga==NULL)
             {
-              cout<<"No hay nada que cargar o el archivo no existe"<<endl;
+              cout<<"No hay nada que cargar"<<endl;
             }else{
               if(vacia(*puntero)){
                 pregunta=1;

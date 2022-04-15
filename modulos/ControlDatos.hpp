@@ -27,6 +27,7 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
   string linea;
   Estudiante *e=new Estudiante;
   stringstream * conversion;
+  bool saltar=false;
   while(!archivo.eof()){
     getline(archivo,linea);
     string datos[C_DATOS];
@@ -38,9 +39,10 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
         i=i+num_c+1;
         num_c=linea.find(SEPARADOR,i)-i;
       }
-      if (num_c==string::npos) return NULL;
+      if (num_c==string::npos) {saltar=true;break;}
       datos[j]=linea.substr(i,num_c);
     }
+    if (saltar) break;
     conversion = new stringstream();
     *conversion<<datos[0]; *conversion>>e->id;
     conversion = new stringstream();
