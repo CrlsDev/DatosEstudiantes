@@ -51,5 +51,7 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
     e->nombre=datos[2];
     colaMeter(cab,e);
   }
+  Mostrar(cab);
+  system("pause");
   return cab; 
 }
