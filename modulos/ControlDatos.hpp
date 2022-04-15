@@ -25,7 +25,7 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
   if (!archivo) return NULL;
   Nodo* cab = NULL;
   string linea;
-  Estudiante *e=new Estudiante;
+  Estudiante *e;
   stringstream * conversion;
   bool saltar=false;
   while(!archivo.eof()){
@@ -43,6 +43,7 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
       datos[j]=linea.substr(i,num_c-i);
     }
     if (!saltar) {
+      e=new Estudiante;
       conversion = new stringstream();
       *conversion<<datos[0]; *conversion>>e->id;
       conversion = new stringstream();
@@ -51,7 +52,5 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
       colaMeter(cab,e);
     }
   }
-  Mostrar(cab);
-  system("pause");
   return cab; 
 }
