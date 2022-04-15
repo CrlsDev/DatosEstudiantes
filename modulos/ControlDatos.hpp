@@ -37,19 +37,19 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
       if (j==0) num_c = linea.find(SEPARADOR);
       else {
         i=i+num_c+1;
-        num_c=linea.find(SEPARADOR,i)-i;
+        num_c=linea.find(SEPARADOR,i);
       }
       if (num_c==string::npos) {saltar=true;break;}
-      datos[j]=linea.substr(i,num_c);
+      datos[j]=linea.substr(i,num_c-i);
     }
-    if (saltar) {cout<<"No se puede cargar"<<endl;break;}
-    cout<<"Se puede cargar"<<endl;
-    conversion = new stringstream();
-    *conversion<<datos[0]; *conversion>>e->id;
-    conversion = new stringstream();
-    *conversion<<datos[1]; *conversion>>e->nota;
-    e->nombre=datos[2];
-    colaMeter(cab,e);
+    if (!saltar) {
+      conversion = new stringstream();
+      *conversion<<datos[0]; *conversion>>e->id;
+      conversion = new stringstream();
+      *conversion<<datos[1]; *conversion>>e->nota;
+      e->nombre=datos[2];
+      colaMeter(cab,e);
+    }
   }
   Mostrar(cab);
   system("pause");
