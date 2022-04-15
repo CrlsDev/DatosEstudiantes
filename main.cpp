@@ -170,6 +170,7 @@ int main(int argc, char** argv) {
         
         system ("CLS");
         
+        
         Mostrar(*puntero);
         system("pause");
       break;

@@ -32,7 +32,6 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
     getline(archivo,linea);
     string datos[C_DATOS];
     int i=0,num_c=0;
-    cout<<endl<<"En prueba: "<<linea<<endl;  
     for (int j=0;j<C_DATOS;j++){
       if (j==0) num_c = linea.find(SEPARADOR);
       else {
