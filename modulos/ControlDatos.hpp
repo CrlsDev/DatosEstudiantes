@@ -42,7 +42,8 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
       if (num_c==string::npos) {saltar=true;break;}
       datos[j]=linea.substr(i,num_c);
     }
-    if (saltar) break;
+    if (saltar) {cout<<"No se puede cargar"<<endl;break;}
+    cout<<"Se puede cargar"<<endl;
     conversion = new stringstream();
     *conversion<<datos[0]; *conversion>>e->id;
     conversion = new stringstream();
