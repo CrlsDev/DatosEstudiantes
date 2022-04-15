@@ -84,7 +84,7 @@ int main(int argc, char** argv) {
               cout<<"La id que intente ingresar ya existe en el otro modo, Desea copiar el dato a la pila?\n 1. Si | 2. No\n";
               cin>>pregunta;
 
-            }while(pregunta!=1 || pregunta!=2);
+            }while(pregunta!=1 && pregunta!=2);
             if ((valido=pregunta==1)){pilaMeter(pila, coincidencia);copiado=true;}
           }
 
