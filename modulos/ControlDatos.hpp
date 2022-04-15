@@ -36,7 +36,7 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
     for (int j=0;j<C_DATOS;j++){
       if (j==0) num_c = linea.find(SEPARADOR);
       else {
-        i=i+num_c+1;
+        i=num_c+1;
         num_c=linea.find(SEPARADOR,i);
       }
       if (num_c==string::npos) {saltar=true;break;}
