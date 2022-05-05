@@ -98,7 +98,7 @@ Nodo*BuscarNombre(Nodo*cab,string Nombre){
  Nodo*BuscarNotaDebajoDe(Nodo*cab,float nota, bool igual=false){
 	 Nodo*aux=NULL;
 	 while(cab!=NULL){
-		if((nota==cab->estudiante->nota && igual) || nota<cab->estudiante->nota){
+		if((nota==cab->estudiante->nota && igual) || nota>cab->estudiante->nota){
 			pilaMeter(aux,cab->estudiante);
 		}
 		cab=cab->sig;
@@ -110,7 +110,7 @@ Nodo*BuscarNombre(Nodo*cab,string Nombre){
  Nodo*BuscarNotaArribaDe(Nodo*cab,float nota, bool igual=false){
 	 Nodo*aux=NULL;
 	 while(cab!=NULL){
-		if((nota==cab->estudiante->nota && igual) || nota>cab->estudiante->nota){
+		if((nota==cab->estudiante->nota && igual) || nota<cab->estudiante->nota){
 			pilaMeter(aux,cab->estudiante);
 		}
 		cab=cab->sig;

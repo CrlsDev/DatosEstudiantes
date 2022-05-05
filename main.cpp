@@ -313,7 +313,8 @@ int main(int argc, char** argv) {
         PosicionarCursor(45,2); cout<<"OPERAR\n";
         PosicionarCursor(40,6); cout<<"1.............Contar Estudiantes\n";
         PosicionarCursor(40,7); cout<<"2.............Promediar Notas\n";
-        PosicionarCursor(40,8); cout<<"3.............Regresar\n";
+        PosicionarCursor(40,8); cout<<"3.............Aprobado o reprobado\n";
+        PosicionarCursor(40,9); cout<<"4.............Regresar\n";
         PosicionarCursor(40,10);cout<<"Opcion: \n";
         PosicionarCursor(48,10);cin>>opr;
         
@@ -331,12 +332,20 @@ int main(int argc, char** argv) {
           PosicionarCursor(40,12);cout<<"El promedio de las notas es: "<<prom<<endl;}
           PosicionarCursor(40,14);system("pause");
           break;
-          case 3:
+          case 3:{
+          float nota_minima =3.0;
+          cout<<endl<<"Estudiantes aprobados: "<<endl;
+          Mostrar(BuscarNotaArribaDe(*puntero,nota_minima,true));
+          cout<<"Estudiantes no aprobados "<<endl;
+          Mostrar(BuscarNotaDebajoDe(*puntero,nota_minima));}
+          system("pause");
+          break;
+          case 4:
           break;
     
         default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n"; break;
         }
-          } while (opr!=3);
+          } while (opr!=4);
         
         break;
         
@@ -413,14 +422,14 @@ int main(int argc, char** argv) {
         default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
         }
         } while (opr!=4);
-        break;
+      break;
       case 9:
         break; 
       default:PosicionarCursor(0,20); cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
     }
     
 
-  }while(op1!=9);
+  }while(op1!=10);
 }
 
 
