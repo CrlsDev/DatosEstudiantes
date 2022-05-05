@@ -95,6 +95,30 @@ Nodo*BuscarNombre(Nodo*cab,string Nombre){
 	return aux;
 
  }
+ Nodo*BuscarNotaDebajoDe(Nodo*cab,float nota, bool igual=false){
+	 Nodo*aux=NULL;
+	 while(cab!=NULL){
+		if((nota==cab->estudiante->nota && igual) || nota<cab->estudiante->nota){
+			pilaMeter(aux,cab->estudiante);
+		}
+		cab=cab->sig;
+	}
+
+	return aux;
+
+ }
+ Nodo*BuscarNotaArribaDe(Nodo*cab,float nota, bool igual=false){
+	 Nodo*aux=NULL;
+	 while(cab!=NULL){
+		if((nota==cab->estudiante->nota && igual) || nota>cab->estudiante->nota){
+			pilaMeter(aux,cab->estudiante);
+		}
+		cab=cab->sig;
+	}
+
+	return aux;
+
+ }
 int contar(Nodo *aux){
 	int c=0;
 	while(aux!=NULL){
