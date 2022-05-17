@@ -130,41 +130,41 @@ void Menu_principal(){
         }}
 		  }
 
-     void prueba_sacar()
-      { 
-         if (puntero==NULL)
-        {
-          cout<<"Elija un modo."<<endl;
-          system("pause");
-          return;
-        }
-          Estudiante*datoSacar=sacar(*puntero); 
-          PosicionarCursor(45,18);
-          if (datoSacar!=NULL){
-          cout<<"Saco : ";
-          PosicionarCursor(45,20);
-          mostrarEstudiante(datoSacar);
-          }else
-          {
-            cout<<"la estructura esta vacia."<<endl;
-          }
-          
-          system("pause");
-         }
-
-    
-void Menu_mostrar(){
-    if (puntero==NULL){
+void Menu_sacar()
+  { 
+  if (puntero==NULL)
+  {
     cout<<"Elija un modo."<<endl;
     system("pause");
     return;
   }
+    Estudiante*datoSacar=sacar(*puntero); 
+    PosicionarCursor(45,18);
+    if (datoSacar!=NULL){
+    cout<<"Saco : ";
+    PosicionarCursor(45,20);
+    mostrarEstudiante(datoSacar);cout<<endl;
+    }else
+    {
+      cout<<"la estructura esta vacia."<<endl;
+    }
     
-  system ("CLS");
-  
-  
-  Mostrar(*puntero);
-  system("pause");
+    system("pause");
+  }
+
+    
+void Menu_mostrar(){
+if (puntero==NULL){
+cout<<"Elija un modo."<<endl;
+system("pause");
+return;
+}
+
+system ("CLS");
+
+
+Mostrar(*puntero);
+system("pause");
 }
 
 void Buscar(){
@@ -172,9 +172,9 @@ void Buscar(){
         {
           cout<<"Elija un modo."<<endl;
           system("pause");
-          break;
+          return;
         }
-do
+        do
         {
           system ("CLS");
         
@@ -252,6 +252,88 @@ do
           } while (opr!=4);
 }
 
+void Intercambiar_datos(){
+  do{
+    system ("CLS");
+  
+    PosicionarCursor(45,2); cout<<"INTERCAMBIAR DATOS\n";
+    PosicionarCursor(40,6); cout<<"1.............Mover datos de Cola a Pila\n";
+    PosicionarCursor(40,7); cout<<"2.............Mover datos de Pila a Cola\n";
+    PosicionarCursor(40,8); cout<<"3.............Regresar\n";
+    PosicionarCursor(40,10);cout<<"Opcion: \n";
+    PosicionarCursor(48,10);cin>>opr;
+  
+    switch (opr){
+        
+      case 1:
+      colaSacarPilaMeter(cola,pila);
+      cout<<"COLA: ";
+      Mostrar(cola);
+      cout<<endl<<"\nPILA: ";
+      Mostrar(pila);
+      system("pause");
+      break;
+      case 2:
+      pilaSacarColaMeter(pila,cola);
+      cout<<"PILA: ";
+      Mostrar(pila);
+      cout<<endl<<"\nCOLA: ";
+      Mostrar(cola);
+      system("pause");
+      break;
+      case 3:
+      break;
+    
+      default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
+    }
+  } while (opr!=3);
+}
+void Operar_datos(){
+  if (puntero==NULL){
+    cout<<"Elija un modo."<<endl;
+    system("pause");
+    return;
+  }
+  do
+  {
+    system ("CLS");
+
+    PosicionarCursor(45,2); cout<<"OPERAR\n";
+    PosicionarCursor(40,6); cout<<"1.............Contar Estudiantes\n";
+    PosicionarCursor(40,7); cout<<"2.............Promediar Notas\n";
+    PosicionarCursor(40,8); cout<<"3.............Aprobado o reprobado\n";
+    PosicionarCursor(40,9); cout<<"4.............Regresar\n";
+    PosicionarCursor(40,10);cout<<"Opcion: \n";
+    PosicionarCursor(48,10);cin>>opr;
+    
+    switch (opr){
+        
+      case 1:
+      {
+      int conteo=contar(*puntero);
+      PosicionarCursor(40,12);cout<<"El total de las notas guardas es: "<<conteo<<endl;
+      PosicionarCursor(40,14);system("pause");}
+      break;
+      case 2:{
+      float prom=promedio(*puntero);
+      PosicionarCursor(40,12);cout<<"El promedio de las notas es: "<<prom<<endl;}
+      PosicionarCursor(40,14);system("pause");
+      break;
+      case 3:{
+        
+        cout<<endl<<"Estudiantes aprobados: "<<endl;
+        Mostrar(BuscarNotaArribaDe(*puntero,nota_minima,true));
+        cout<<"Estudiantes no aprobados "<<endl;
+        Mostrar(BuscarNotaDebajoDe(*puntero,nota_minima));}
+        system("pause");
+      break;
+      case 4:
+      break;
+  
+      default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n"; break;
+    }
+  } while (opr!=4);
+}
 void Cambiar_minima(){
   int opcion;
   do{
@@ -281,7 +363,7 @@ if (puntero==NULL)
         {
           cout<<"Elija un modo."<<endl;
           system("pause");
-          break;
+          return;
         }
         do
         {
