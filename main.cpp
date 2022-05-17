@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
     switch (op1)
     {
       case 1: //SELECCIONAR OPCION PILA O COLA.
-                    Escoger_Modo();
+                    Escoger_modo();
         break;
 
       case 2: //METER DATO
@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
         break;
 
       case 5: // BUSCAR
-                   Buscar();
+                   Menu_buscar();
         break;
 
       case 6: //Intercambio de datos
@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
                 Operar_datos();
         break;
 
-      case 8:{
+      case 8:
       	        Cambiar_minima();
       	break;
 
@@ -55,7 +55,6 @@ int main(int argc, char** argv) {
       case 10:
         break; 
       default:PosicionarCursor(0,20); cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
-      }
     }
     
 

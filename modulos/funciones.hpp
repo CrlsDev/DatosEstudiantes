@@ -36,24 +36,42 @@ void colaMeter(Nodo *&cab,Estudiante* e){
 bool vacia(Nodo *cab){
 	return cab==NULL;
 }
-
-void mostrarEstudiante(Estudiante* e, int x, int y){
+void mostrarEstudiante(Estudiante* e){
+	cout<<"id: "<<e->id;
+				cout<<",nota: "<<e->nota;
+       cout<<",nombre: "<<e->nombre;
+}
+void mostrarEstudianteEn(Estudiante* e, int x, int y){
 	PosicionarCursor(x,y);cout<<"id: "<<e->id;
 				cout<<",nota: "<<e->nota;
        cout<<",nombre: "<<e->nombre;
 }
-void Mostrar(Nodo *aux,int x=0,int y_i=0){
+void Mostrar(Nodo *aux){
 	if(aux==NULL)
 		cout<<"Vacia"<<endl;
 	else{
 		while(aux!=NULL){
-			mostrarEstudiante(aux->estudiante,x,y_i);
-			y_i++;
+			mostrarEstudiante(aux->estudiante);
+			cout<<endl;
 			aux=aux->sig;
 			
 		}
-		cout<<endl;
 	}		
+}
+int MostrarEn(Nodo *aux,int x,int y){
+	if(aux==NULL){
+		PosicionarCursor(x,y);cout<<"Vacia";
+		y++;
+	}
+	else{
+		while(aux!=NULL){
+			mostrarEstudianteEn(aux->estudiante,x,y);
+			y++;
+			aux=aux->sig;
+			
+		}
+	}
+	return y;
 }
 
 bool Buscar(Nodo *aux,long id){
@@ -125,7 +143,7 @@ Nodo*BuscarNombre(Nodo*cab,string Nombre){
 	return aux;
 
  }
-int contar(Nodo *aux){
+int Contar(Nodo *aux){
 	int c=0;
 	while(aux!=NULL){
 		c++;

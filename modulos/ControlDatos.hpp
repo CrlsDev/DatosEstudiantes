@@ -20,7 +20,7 @@ bool Guardar(Nodo* cab,const char* dir = DIR_ARCHIVO){
   archivo.close();
   return true;
 }
-Nodo* Cargar(const char* dir = DIR_ARCHIVO){
+Nodo* Cargar(Nodo* no_valido=NULL,const char* dir = DIR_ARCHIVO){
   ifstream archivo(string(dir).c_str());
   if (!archivo) return NULL;
   Nodo* cab = NULL;
@@ -48,7 +48,7 @@ Nodo* Cargar(const char* dir = DIR_ARCHIVO){
       conversion = new stringstream();
       *conversion<<datos[1]; *conversion>>e->nota;
       e->nombre=datos[2];
-      colaMeter(cab,e);
+      if (!Buscar(no_valido,e->id))colaMeter(cab,e);
     }
   }
   return cab; 
