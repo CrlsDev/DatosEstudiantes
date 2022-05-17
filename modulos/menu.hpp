@@ -142,8 +142,7 @@ void Menu_sacar()
     PosicionarCursor(45,18);
     if (datoSacar!=NULL){
     cout<<"Saco : ";
-    PosicionarCursor(45,20);
-    mostrarEstudiante(datoSacar);cout<<endl;
+    mostrarEstudiante(datoSacar,45,20);cout<<endl;
     }else
     {
       cout<<"la estructura esta vacia."<<endl;
@@ -199,7 +198,7 @@ void Buscar(){
             Estudiante*iden=BuscarId(*puntero,id);
             if (iden!=NULL)
             {
-              cout<<"se encontro: "<<endl;mostrarEstudiante(iden); 
+              cout<<"se encontro: "<<endl;mostrarEstudiante(iden,0,0); 
             }else{
               cout<<"no se encontro la id: "<<id<<endl;
             }
@@ -329,8 +328,22 @@ void Operar_datos(){
         system("pause");
       break;
       case 4:
+        {
+          do{
+            system("cls");
+            int id;
+            PosicionarCursor(40,14);cout<<"Digite la id que desea editar: ",cin>>id;
+            Estudiante* e = BuscarId(*puntero,id);
+            if (e!=NULL){
+              mostrarEstudiante(e,40,16);
+              break;
+            }else {cout<<"No existe esa ID"<<endl;system("pause");}
+            
+          }while(true);
 
-      break;
+        }
+        system("pause");
+        break;
       case 5:
       break;
   

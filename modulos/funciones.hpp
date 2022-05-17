@@ -6,6 +6,11 @@
 static HANDLE cur; 
 static COORD pos;
 using namespace std;
+void PosicionarCursor(int x, int y){
+   
+	cur = GetStdHandle(STD_OUTPUT_HANDLE);
+  pos.Y  =  y;  pos.X  =  x;  SetConsoleCursorPosition(cur,pos);
+}
 void pilaMeter(Nodo *&cab,Estudiante* e){
 	Nodo *aux=new Nodo;
 
@@ -32,17 +37,18 @@ bool vacia(Nodo *cab){
 	return cab==NULL;
 }
 
-void mostrarEstudiante(Estudiante* e){
-	cout<<"\nid: "<<e->id;
+void mostrarEstudiante(Estudiante* e, int x, int y){
+	PosicionarCursor(x,y);cout<<"id: "<<e->id;
 				cout<<",nota: "<<e->nota;
        cout<<",nombre: "<<e->nombre;
-	}
-void Mostrar(Nodo *aux){
+}
+void Mostrar(Nodo *aux,int x=0,int y_i=0){
 	if(aux==NULL)
 		cout<<"Vacia"<<endl;
 	else{
 		while(aux!=NULL){
-			mostrarEstudiante(aux->estudiante);
+			mostrarEstudiante(aux->estudiante,x,y_i);
+			y_i++;
 			aux=aux->sig;
 			
 		}
@@ -186,8 +192,4 @@ Nodo* UnirEstructuras(Nodo* cab1, Nodo* cab2){
 	return Union;
 }
 
-void PosicionarCursor(int x, int y){
-   
-	cur = GetStdHandle(STD_OUTPUT_HANDLE);
-  pos.Y  =  y;  pos.X  =  x;  SetConsoleCursorPosition(cur,pos);
-}
+
