@@ -2,34 +2,17 @@
 #include <fstream>
 #include "modulos/funciones.hpp"
 #include ".\modulos\ControlDatos.hpp" //se incluyo el archivo de funciones
-
+#include "modulos/menu.hpp"
 using namespace std;
 
 
 
 int main(int argc, char** argv) {
-  int op1,mov,opr, modo;
-  Nodo*pila=NULL,*cola=NULL;
-
-  Nodo**puntero=NULL;
-  const char* texto_modo = "(NO SE HA ELEGIDO MODO)"; 
-
+  
 
   do{
 
-    system ("CLS");
-    PosicionarCursor(45,2); cout<<"MENU PRINCIPAL "<<texto_modo<<"\n";
-    PosicionarCursor(40,6); cout<<"1.............Elegir modo\n";
-    PosicionarCursor(40,7); cout<<"2.............Meter Dato\n";
-    PosicionarCursor(40,8); cout<<"3.............Sacar Dato\n";
-    PosicionarCursor(40,9); cout<<"4.............Mostrar";
-    PosicionarCursor(40,10); cout<<"5.............Buscar\n";
-    PosicionarCursor(40,11); cout<<"6.............Intercambiar Datos\n";
-    PosicionarCursor(40,12); cout<<"7.............Operar\n";
-    PosicionarCursor(40,13); cout<<"8.............Respaldo de Datos\n";
-    PosicionarCursor(40,14); cout<<"9.............Salir\n";
-    PosicionarCursor(40,16);cout<<"Opcion: \n";
-    PosicionarCursor(48,16);cin>>op1;	
+    Menu_principal();
           
     switch (op1)
     {
@@ -333,12 +316,12 @@ int main(int argc, char** argv) {
           PosicionarCursor(40,14);system("pause");
           break;
           case 3:{
-          float nota_minima =3.0;
-          cout<<endl<<"Estudiantes aprobados: "<<endl;
-          Mostrar(BuscarNotaArribaDe(*puntero,nota_minima,true));
-          cout<<"Estudiantes no aprobados "<<endl;
-          Mostrar(BuscarNotaDebajoDe(*puntero,nota_minima));}
-          system("pause");
+	          
+	          cout<<endl<<"Estudiantes aprobados: "<<endl;
+	          Mostrar(BuscarNotaArribaDe(*puntero,nota_minima,true));
+	          cout<<"Estudiantes no aprobados "<<endl;
+	          Mostrar(BuscarNotaDebajoDe(*puntero,nota_minima));}
+	          system("pause");
           break;
           case 4:
           break;
@@ -348,8 +331,29 @@ int main(int argc, char** argv) {
           } while (opr!=4);
         
         break;
-        
-      case 8: // respaldo
+      case 8:{
+      	int opcion;
+      	do{
+      		
+					system ("CLS");
+      		
+      		PosicionarCursor(40,12);cout<<"1. Cambiar nota minima";
+      		PosicionarCursor(40,13);cout<<"2. Regresar";
+      		PosicionarCursor(40,14);cout<<"Opcion: ",cin>>opcion;
+      		if (opcion==1){
+      			do{
+      				system ("CLS");
+      				PosicionarCursor(40,10);cout<<"NOTA MINIMA: "<<nota_minima;
+      				PosicionarCursor(40,12);cout<<"Escriba la nueva nota minima: ",cin>>nota_minima;
+						}while((nota_minima>5 || nota_minima<0));
+					}
+      	}while(opcion!=2 && opcion!=1);
+      	system ("CLS");
+				PosicionarCursor(40,13);cout<<"NOTA MINIMA CAMBIADA A: "<<nota_minima;
+      	PosicionarCursor(40,16);system("pause");
+      	}
+      	break;
+      case 9: // respaldo
       if (puntero==NULL)
         {
           cout<<"Elija un modo."<<endl;
@@ -423,7 +427,7 @@ int main(int argc, char** argv) {
         }
         } while (opr!=4);
       break;
-      case 9:
+      case 10:
         break; 
       default:PosicionarCursor(0,20); cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n";
     }
