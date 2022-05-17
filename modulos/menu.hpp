@@ -26,3 +26,39 @@ void Menu_principal(){
     PosicionarCursor(40,17);cout<<"Opcion: \n";
     PosicionarCursor(48,17);cin>>op1;
 }
+
+void Menu_mostrar(){
+    if (puntero==NULL){
+    cout<<"Elija un modo."<<endl;
+    system("pause");
+    return;
+  }
+    
+  system ("CLS");
+  
+  
+  Mostrar(*puntero);
+  system("pause");
+}
+
+void Cambiar_minima(){
+  int opcion;
+  do{
+    
+    system ("CLS");
+    
+    PosicionarCursor(40,12);cout<<"1. Cambiar nota minima";
+    PosicionarCursor(40,13);cout<<"2. Regresar";
+    PosicionarCursor(40,14);cout<<"Opcion: ",cin>>opcion;
+    if (opcion==1){
+      do{
+        system ("CLS");
+        PosicionarCursor(40,10);cout<<"NOTA MINIMA: "<<nota_minima;
+        PosicionarCursor(40,12);cout<<"Escriba la nueva nota minima: ",cin>>nota_minima;
+      }while((nota_minima>5 || nota_minima<0));
+    }
+  }while(opcion!=2 && opcion!=1);
+  system ("CLS");
+  PosicionarCursor(40,13);cout<<"NOTA MINIMA CAMBIADA A: "<<nota_minima;
+  PosicionarCursor(40,16);system("pause");
+}
