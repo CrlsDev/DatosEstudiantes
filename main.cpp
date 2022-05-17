@@ -237,7 +237,7 @@ int main(int argc, char** argv) {
         Intercambiar_datos();
         break;
       case 7: // operar
-        Operar_datos();
+        Operar_datos();  
         break;
       case 8:{
       	Cambiar_minima();
