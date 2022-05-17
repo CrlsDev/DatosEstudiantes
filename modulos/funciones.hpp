@@ -36,7 +36,7 @@ void mostrarEstudiante(Estudiante* e){
 	cout<<"\nid: "<<e->id;
 				cout<<",nota: "<<e->nota;
        cout<<",nombre: "<<e->nombre;
-}
+	}
 void Mostrar(Nodo *aux){
 	if(aux==NULL)
 		cout<<"Vacia"<<endl;
