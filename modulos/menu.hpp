@@ -201,7 +201,7 @@ void Buscar(){
             {
               cout<<"se encontro: "<<endl;mostrarEstudiante(iden); 
             }else{
-              cout<<"no se encontro la id: "<<id;
+              cout<<"no se encontro la id: "<<id<<endl;
             }
             system("pause");
           }
@@ -219,7 +219,7 @@ void Buscar(){
               cout<<"se encontro: "<<endl;
               Mostrar(resultados);
             }else{
-              cout<<"no se encontro la nota: "<<nota;
+              cout<<"no se encontro la nota: "<<nota<<endl;
             }
             system("pause");
           }
@@ -238,7 +238,7 @@ void Buscar(){
               cout<<"se encontro: "<<endl;
               Mostrar(resultados);
             }else{
-              cout<<"no se encontro el nombre: "<<nombre;
+              cout<<"no se encontro el nombre: "<<nombre<<endl;
             }
             system("pause");
           }
@@ -302,9 +302,10 @@ void Operar_datos(){
     PosicionarCursor(40,6); cout<<"1.............Contar Estudiantes\n";
     PosicionarCursor(40,7); cout<<"2.............Promediar Notas\n";
     PosicionarCursor(40,8); cout<<"3.............Aprobado o reprobado\n";
-    PosicionarCursor(40,9); cout<<"4.............Regresar\n";
-    PosicionarCursor(40,10);cout<<"Opcion: \n";
-    PosicionarCursor(48,10);cin>>opr;
+    PosicionarCursor(40,9); cout<<"4.............Editar notas\n";
+    PosicionarCursor(40,10); cout<<"5.............Regresar\n";
+    PosicionarCursor(40,11);cout<<"Opcion: \n";
+    PosicionarCursor(48,11);cin>>opr;
     
     switch (opr){
         
@@ -323,16 +324,19 @@ void Operar_datos(){
         
         cout<<endl<<"Estudiantes aprobados: "<<endl;
         Mostrar(BuscarNotaArribaDe(*puntero,nota_minima,true));
-        cout<<"Estudiantes no aprobados "<<endl;
+        cout<<endl<<"Estudiantes no aprobados "<<endl;
         Mostrar(BuscarNotaDebajoDe(*puntero,nota_minima));}
         system("pause");
       break;
       case 4:
+
+      break;
+      case 5:
       break;
   
       default: cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa \n"; break;
     }
-  } while (opr!=4);
+  } while (opr!=5);
 }
 void Cambiar_minima(){
   int opcion;
