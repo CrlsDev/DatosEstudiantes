@@ -58,7 +58,7 @@ void Mostrar(Nodo *aux){
 		}
 	}		
 }
-int MostrarEn(Nodo *aux,int x,int y){
+void MostrarEn(Nodo *aux,int x,int &y, int espacio=0){
 	if(aux==NULL){
 		PosicionarCursor(x,y);cout<<"Vacia";
 		y++;
@@ -71,7 +71,7 @@ int MostrarEn(Nodo *aux,int x,int y){
 			
 		}
 	}
-	return y;
+	y+=espacio;
 }
 
 bool Buscar(Nodo *aux,long id){
@@ -150,7 +150,7 @@ int Contar(Nodo *aux){
 		aux=aux->sig;
 	}return c;
 	}
-float promedio(Nodo*aux){
+float Promedio(Nodo*aux){
 	float suma=0;
 	int conteo=0;
 	while(aux!=NULL){

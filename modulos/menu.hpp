@@ -14,14 +14,14 @@ void Menu_principal(){
 	system ("CLS");
   PosicionarCursor(45,2); cout<<"MENU PRINCIPAL "<<texto_modo<<"\n";
   PosicionarCursor(40,6); cout<<"1.............Elegir modo\n";
-  PosicionarCursor(40,7); cout<<"2.............Meter Dato\n";
-  PosicionarCursor(40,8); cout<<"3.............Sacar Dato\n";
+  PosicionarCursor(40,7); cout<<"2.............Meter dato\n";
+  PosicionarCursor(40,8); cout<<"3.............Sacar dato\n";
   PosicionarCursor(40,9); cout<<"4.............Mostrar";
   PosicionarCursor(40,10); cout<<"5.............Buscar\n";
-  PosicionarCursor(40,11); cout<<"6.............Intercambiar Datos\n";
+  PosicionarCursor(40,11); cout<<"6.............Intercambiar datos\n";
   PosicionarCursor(40,12); cout<<"7.............Operar\n";
   PosicionarCursor(40,13); cout<<"8.............Cambiar nota minima\n";
-  PosicionarCursor(40,14); cout<<"9.............Respaldo de Datos\n";
+  PosicionarCursor(40,14); cout<<"9.............Respaldo de datos\n";
   PosicionarCursor(40,15); cout<<"10............Salir\n";
   PosicionarCursor(40,17);cout<<"Opcion: \n";
   PosicionarCursor(48,17);cin>>op1;
@@ -160,9 +160,10 @@ void Menu_mostrar(){
   }
 
   system ("CLS");
-
-  int y=MostrarEn(*puntero,40,3);
-  PosicionarCursor(40,y+1);system("pause");
+  PosicionarCursor(40,3);cout<<"Estudiantes guardados: ";
+  int y=5;
+  MostrarEn(*puntero,40,y,1);
+  PosicionarCursor(40,y);system("pause");
 }
 
 void Menu_buscar(){
@@ -198,9 +199,9 @@ void Menu_buscar(){
         {
           PosicionarCursor(40,8);cout<<"Se encontro: ",mostrarEstudiante(iden); 
         }else{
-          PosicionarCursor(40,8);cout<<"No se encontro la id: "<<id<<endl;
+          PosicionarCursor(40,8);cout<<"No se encontro la id: "<<id;
         }
-        system("pause");
+        PosicionarCursor(40,10);system("pause");
       }
       break;
       case 2:
@@ -216,11 +217,11 @@ void Menu_buscar(){
         {
           int n_r=Contar(resultados);
           PosicionarCursor(40,8);cout<<"Se encontraron ("<<n_r<<") resultados: ";
-          n_r=MostrarEn(resultados,40,10);
-          PosicionarCursor(40,1+n_r);
+          MostrarEn(resultados,40,n_r,1);
+          PosicionarCursor(40,n_r);
         }else{
-          PosicionarCursor(40,6);cout<<"No se encontro la nota: "<<nota;
-          PosicionarCursor(40,8);
+          PosicionarCursor(40,8);cout<<"No se encontro la nota: "<<nota;
+          PosicionarCursor(40,10);
         }
         system("pause");
       }
@@ -231,17 +232,18 @@ void Menu_buscar(){
         string nombre;
       
         system("cls");
-        cout<<"Ingrese el nombre que quiere buscar: ";cin>>nombre;
+        PosicionarCursor(40,6);cout<<"Ingrese el nombre que quiere buscar: ";cin>>nombre;
       
         Nodo*resultados=BuscarNombre(*puntero,nombre);
         if (resultados!=NULL)
         {
           int n_r=Contar(resultados);
           PosicionarCursor(40,8);cout<<"Se encontraron ("<<n_r<<") resultados: ";
-          n_r=MostrarEn(resultados,40,10);
-          PosicionarCursor(40,1+n_r);
+          MostrarEn(resultados,40,n_r,1);
+          PosicionarCursor(40,n_r);
         }else{
-          cout<<"no se encontro el nombre: "<<nombre<<endl;
+          PosicionarCursor(40,8);cout<<"No se encontro el nombre: "<<nombre;
+          PosicionarCursor(40,10);
         }
         system("pause");
       }
@@ -272,20 +274,22 @@ void Intercambiar_datos(){
       {
         colaSacarPilaMeter(cola,pila);
         PosicionarCursor(40,12);cout<<"COLA: ";
-        int y = MostrarEn(cola,40,14);
-        PosicionarCursor(40,y+1);cout<<"PILA: ";
-        y = MostrarEn(pila,40,y+3);
-        PosicionarCursor(40,y+1);
+        int y = 14;
+        MostrarEn(cola,40,y,1);
+        PosicionarCursor(40,y);cout<<"PILA: ";
+        MostrarEn(pila,40,y,1);
+        PosicionarCursor(40,y);
       }
       break;
       case 2:
       {
         pilaSacarColaMeter(pila,cola);
         PosicionarCursor(40,12);cout<<"PILA: ";
-        int y = MostrarEn(pila,40,14);
-        PosicionarCursor(40,y+1);cout<<"COLA: ";
-        y = MostrarEn(cola,40,y+3);
-        PosicionarCursor(40,y+1);
+        int y=14;
+        MostrarEn(pila,40,y,1);
+        PosicionarCursor(40,y);cout<<"COLA: ";
+        MostrarEn(cola,40,y,1);
+        PosicionarCursor(40,y);
       }
       break;
       case 3:
@@ -308,9 +312,9 @@ void Operar_datos(){
     system ("CLS");
 
     PosicionarCursor(45,2); cout<<"OPERAR\n";
-    PosicionarCursor(40,6); cout<<"1.............Contar Estudiantes\n";
-    PosicionarCursor(40,7); cout<<"2.............Promediar Notas\n";
-    PosicionarCursor(40,8); cout<<"3.............Aprobado o reprobado\n";
+    PosicionarCursor(40,6); cout<<"1.............Contar estudiantes en "<<texto_modo;
+    PosicionarCursor(40,7); cout<<"2.............Promediar notas\n";
+    PosicionarCursor(40,8); cout<<"3.............Ver aprobados y reprobados\n";
     PosicionarCursor(40,9); cout<<"4.............Editar notas\n";
     PosicionarCursor(40,10); cout<<"5.............Regresar\n";
     PosicionarCursor(40,11);cout<<"Opcion: \n";
@@ -321,64 +325,63 @@ void Operar_datos(){
       case 1:
       {
         int conteo=Contar(*puntero);
-        PosicionarCursor(40,13);cout<<"El total de las notas guardas es: "<<conteo<<endl;
-        PosicionarCursor(40,14);system("pause");
+        PosicionarCursor(40,13);cout<<"Hay "<<conteo<<" estudiantes";
+        PosicionarCursor(40,15);system("pause");
       }
       break;
       case 2:
       {
-        float prom=promedio(*puntero);
+        float prom=Promedio(*puntero);
         PosicionarCursor(40,13);cout<<"El promedio de las notas es: "<<prom<<endl;
       }
-      PosicionarCursor(40,14);system("pause");
+      PosicionarCursor(40,15);system("pause");
       break;
       case 3:
       {        
         PosicionarCursor(40,13);cout<<"Estudiantes aprobados: ";
-        int y = MostrarEn(BuscarNotaArribaDe(*puntero,nota_minima,true),40,14);
-        PosicionarCursor(40,y+1);cout<<"Estudiantes no aprobados ";
-        MostrarEn(BuscarNotaDebajoDe(*puntero,nota_minima),40,y+2);
+        int y=14;
+        MostrarEn(BuscarNotaArribaDe(*puntero,nota_minima,true),40,y,1);
+        PosicionarCursor(40,y);cout<<"Estudiantes no aprobados ";
+        MostrarEn(BuscarNotaDebajoDe(*puntero,nota_minima),40,y,2);
+        PosicionarCursor(40,y+1);system("pause");
       }
-        system("pause");
+        
       break;
       case 4:
         {
+          int opcion;
           do{
             system("cls");
-            int id;
-            PosicionarCursor(40,14);cout<<"Digite la id que desea editar: ",cin>>id;
-            Estudiante* e = BuscarId(*puntero,id);
+            int aux;
+            PosicionarCursor(40,14);cout<<"Digite la id que desea editar: ",cin>>aux;
+            Estudiante* e = BuscarId(*puntero,aux);
             if (e!=NULL){
-              int nota;
               do{
                 system("cls");
-                PosicionarCursor(40,14);cout<<"Digite la id que desea editar: "<<id;
-                mostrarEstudianteEn(e,40,16);
-                PosicionarCursor(40,18);cout<<"Digite la nueva nota: ",cin>>nota;
-              }while(nota<0 || nota>5);
-              e->nota=nota;
+                PosicionarCursor(40,14);cout<<"Editando: ";mostrarEstudiante(e);
+                PosicionarCursor(40,16);cout<<"Digite la nueva nota: ",cin>>aux;
+              }while(aux<0 || aux>5);
+              e->nota=aux;
               system("cls");
               PosicionarCursor(40,14);cout<<"Nueva nota establecida: ";
               mostrarEstudiante(e);
+              PosicionarCursor(40,16);
               break;
             }else {
-              int opcion;
+              
               do{
                 system("cls");
-                PosicionarCursor(40,14);cout<<"Digite la id que desea editar: "<<id;
-                PosicionarCursor(40,15);cout<<"No existe esa ID";
+                PosicionarCursor(40,14);cout<<"Digite la id que desea editar: "<<aux;;
+                PosicionarCursor(40,15);cout<<"No existe esa ID en "<<texto_modo;
                 PosicionarCursor(40,17);cout<<"¿Desea intentar de nuevo? 1. Si | 2. No";
                 PosicionarCursor(40,18);cout<<"Su respuesta: ",cin>>opcion;
 
-              }while(opcion!=1 && opcion!=2);
-              if (opcion==2) break;
-                            
+              }while(opcion!=1 && opcion!=2);                            
             }
             
-          }while(true);
-
+          }while(opcion!=2);
         }
-        system("pause");
+        PosicionarCursor(40,20);system("pause");
         break;
       case 5:
       break;
@@ -389,6 +392,7 @@ void Operar_datos(){
 }
 void Cambiar_minima(){
   int opcion;
+  bool cambio=false;
   do{
     
     system ("CLS");
@@ -397,6 +401,7 @@ void Cambiar_minima(){
     PosicionarCursor(40,13);cout<<"2. Regresar";
     PosicionarCursor(40,14);cout<<"Opcion: ",cin>>opcion;
     if (opcion==1){
+      cambio=true;
       do{
         system ("CLS");
         PosicionarCursor(40,10);cout<<"NOTA MINIMA: "<<nota_minima;
@@ -404,8 +409,8 @@ void Cambiar_minima(){
       }while((nota_minima>5 || nota_minima<0));
     }
   }while(opcion!=2 && opcion!=1);
-  system ("CLS");
-  PosicionarCursor(40,13);cout<<"NOTA MINIMA CAMBIADA A: "<<nota_minima;
+  
+  if (cambio){system ("CLS");PosicionarCursor(40,13);cout<<"NOTA MINIMA CAMBIADA A: "<<nota_minima;}
   PosicionarCursor(40,16);system("pause");
 
 }
@@ -441,22 +446,27 @@ void Respaldo(){
           int pregunta;
           if (auxiliar_carga==NULL)
           {
-            PosicionarCursor(40,12);cout<<"No hay nada que cargar";
+            PosicionarCursor(40,12);cout<<"Parece que no hay nada para cargar";
           }else{
             if(vacia(*puntero)){
               pregunta=1;
-              PosicionarCursor(40,12);cout<<"Se cargaron datos con exito";
+              
 
             }else{
               do{
                 system("cls");
-                PosicionarCursor(40,7);cout<<"Es posible que pierda datos que metio, Desea continuar? 1. Si | 2. No";
-                PosicionarCursor(40,8);cout<<"Su respuesta: ",cin>>pregunta;
+                PosicionarCursor(40,8);cout<<"Es posible que pierda datos que metio, Desea continuar? 1. Si | 2. No";
+                PosicionarCursor(40,10);cout<<"Su respuesta: ",cin>>pregunta;
               }while(pregunta!=1 && pregunta!=2);
             }
-          if (pregunta==1) *puntero = auxiliar_carga;
+            if (pregunta==1) {
+              *puntero = auxiliar_carga;
+              PosicionarCursor(40,12);cout<<"Se cargaron datos con exito";
+            }
+            PosicionarCursor(40,13);
           } 
-          PosicionarCursor(40,13);
+          
+          
         }
         break;
       case 2:
@@ -481,7 +491,8 @@ void Respaldo(){
         }
         break;
       case 4:
-      break;
+        PosicionarCursor(40,12);
+        break;
     
       default: PosicionarCursor(40,12);cout<<" No se ha digitado una opcion valido. Puede que sea necesario reiniciar el programa";PosicionarCursor(40,13);
     }
