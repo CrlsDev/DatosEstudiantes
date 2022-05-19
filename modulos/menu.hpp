@@ -352,7 +352,7 @@ void Operar_datos(){
           int opcion;
           do{
             system("cls");
-            int aux;
+            float aux;
             PosicionarCursor(40,14);cout<<"Digite la id que desea editar: ",cin>>aux;
             Estudiante* e = BuscarId(*puntero,aux);
             if (e!=NULL){
