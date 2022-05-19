@@ -83,18 +83,18 @@ bool Buscar(Nodo *aux,long id){
 	}
 	return false;
 }
- Estudiante*BuscarId(Nodo*cab,long id){
-	 while(cab!=NULL){
+Estudiante*BuscarId(Nodo*cab,long id){
+	while(cab!=NULL){
 		if(id==cab->estudiante->id){
-	Estudiante* aux=cab->estudiante;
+			Estudiante* aux=cab->estudiante;
 			return aux;
 
 		}
 		cab=cab->sig;
-	}
+		}
 	return NULL;
 
- }
+}
  Nodo*BuscarNota(Nodo*cab,float nota){
 	 Nodo*aux=NULL;
 	 while(cab!=NULL){

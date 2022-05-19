@@ -48,85 +48,88 @@ void Escoger_modo(){
 void Meter_dato()
 
     {
-        if (puntero==NULL)
+    if (puntero==NULL)
     {
       PosicionarCursor(40,17);cout<<"Elija un modo.";
       PosicionarCursor(40,18);system("pause");
       return;
     }
       //long id; float nota; const char* nombre;
-      Estudiante* e=new Estudiante;
-      bool valido, copiado=false;
+    Estudiante* e=new Estudiante;
+    bool valido, copiado=false;
     do{
       valido = true;
-    system ("CLS");
-    PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
-    PosicionarCursor(45,15); cout<<"Digite id:";cin>>e->id;
-    if (modo==1)
-    {
-      if (Buscar(pila,e->id)){
-        PosicionarCursor(45,17); cout<<"Esta id ya existe"<<endl;
-        system("pause");
-        valido=false;
-        continue;
-      }
-      Estudiante* coincidencia = BuscarId(cola,e->id);
-      if (coincidencia!=NULL){
-        valido=false;
-        int pregunta;
-        do{
-          cout<<"La id que intente ingresar ya existe en el otro modo, Desea copiar el dato a la pila?\n 1. Si | 2. No\n";
-          cin>>pregunta;
+      system ("CLS");
+      PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
+      PosicionarCursor(45,15); cout<<"Digite id:";cin>>e->id;
+      if (modo==1)
+      {
+        if (Buscar(pila,e->id)){
+          PosicionarCursor(45,17); cout<<"Esta id ya existe"<<endl;
+          system("pause");
+          valido=false;
+          continue;
+        }
+        Estudiante* coincidencia = BuscarId(cola,e->id);
+        if (coincidencia!=NULL){
+          valido=false;
+          int pregunta;
+          do{
+            system("cls");
+            PosicionarCursor(45,18);cout<<"La id que intenta ingresar ya existe en el otro modo, Desea copiar el dato a la pila?\n 1. Si | 2. No\n";
+            PosicionarCursor(45,19);cout<<"Su respuesta: ";cin>>pregunta;
 
-        }while(pregunta!=1 && pregunta!=2);
-        if ((valido=pregunta==1)){pilaMeter(pila, coincidencia);copiado=true;}
-      }
+          }while(pregunta!=1 && pregunta!=2);
+          if ((valido=pregunta==1)){pilaMeter(pila, coincidencia);copiado=true;}
+        }
 
-    }else if (modo==2){
-      if (Buscar(cola,e->id)){
-        PosicionarCursor(45,17); cout<<"Esta id ya existe"<<endl;
-        system("pause");
-        valido=false;
-        continue;
-      }
-      Estudiante* coincidencia = BuscarId(pila,e->id);
-      if (coincidencia!=NULL){
-        valido=false;
-        int pregunta;
-        do{
-          cout<<"La id que intente ingresar ya existe en el otro modo, Desea copiar el dato a la cola?\n 1. Si | 2. No\n";
-          cin>>pregunta;
+      }else if (modo==2){
+        if (Buscar(cola,e->id)){
+          PosicionarCursor(45,17); cout<<"Esta id ya existe"<<endl;
+          system("pause");
+          valido=false;
+          continue;
+        }
+        Estudiante* coincidencia = BuscarId(pila,e->id);
+        if (coincidencia!=NULL){
+          valido=false;
+          int pregunta;
+          do{
+            PosicionarCursor(45,18);cout<<"La id que intenta ingresar ya existe en el otro modo, Desea copiar el dato a la pila?\n 1. Si | 2. No\n";
+            PosicionarCursor(45,19);cout<<"Su respuesta: ";cin>>pregunta;
 
-        }while(pregunta!=1 && pregunta!=2);
-        if ((valido=pregunta==1)){colaMeter(cola, coincidencia);copiado=true;}
+          }while(pregunta!=1 && pregunta!=2);
+          if ((valido=pregunta==1)){colaMeter(cola, coincidencia);copiado=true;}
+        }
+      
       }
-    
-    }
     
     } while ((e->id<=0) || !valido);
     if (!copiado){
-    do{
-    system ("CLS");
-    PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
-    PosicionarCursor(45,15); cout<<"Digite id:"<<e->id;
-    PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):";cin>>e->nota;
-    } while (!(e->nota<=5 && e->nota>=0));
+      do{
+      system ("CLS");
+      PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
+      PosicionarCursor(45,15); cout<<"Digite id:"<<e->id;
+      PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):";cin>>e->nota;
+      } while (!(e->nota<=5 && e->nota>=0));
+      
     
-  
-    system ("CLS");
-    PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
-    PosicionarCursor(45,15); cout<<"Digite id:"<<e->id;
-    PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):"<<e->nota;
-    
-    PosicionarCursor(45,17); cout<<"Digite el nombre del estudiante:";cin>>e->nombre;
+      system ("CLS");
+      PosicionarCursor(44,11); cout<<"INGRESANDO DATO EN: "<<texto_modo;
+      PosicionarCursor(45,15); cout<<"Digite id:"<<e->id;
+      PosicionarCursor(45,16); cout<<"Digite nota (de 0 a 5):"<<e->nota;
+      
+      PosicionarCursor(45,17); cout<<"Digite el nombre del estudiante:";
+      cin.ignore();
+      getline(cin,e->nombre);
 
 
-    if (modo==1)
-    {
-      pilaMeter(pila,e);
-    }else if (modo==2)
-    {
-      colaMeter(cola,e);
+      if (modo==1)
+      {
+        pilaMeter(pila,e);
+      }else if (modo==2)
+      {
+        colaMeter(cola,e);
     }}
   }
 
@@ -141,8 +144,8 @@ void Menu_sacar()
     Estudiante*datoSacar=sacar(*puntero); 
     PosicionarCursor(40,18);
     if (datoSacar!=NULL){
-    cout<<"Se saco: ";
-    mostrarEstudiante(datoSacar);
+      cout<<"Se saco: ";
+      mostrarEstudiante(datoSacar);
     }else
     {
       cout<<"la estructura esta vacia."<<endl;
@@ -217,6 +220,7 @@ void Menu_buscar(){
         {
           int n_r=Contar(resultados);
           PosicionarCursor(40,8);cout<<"Se encontraron ("<<n_r<<") resultados: ";
+          n_r=9;
           MostrarEn(resultados,40,n_r,1);
           PosicionarCursor(40,n_r);
         }else{
@@ -239,6 +243,7 @@ void Menu_buscar(){
         {
           int n_r=Contar(resultados);
           PosicionarCursor(40,8);cout<<"Se encontraron ("<<n_r<<") resultados: ";
+          n_r=9;
           MostrarEn(resultados,40,n_r,1);
           PosicionarCursor(40,n_r);
         }else{
@@ -276,7 +281,7 @@ void Intercambiar_datos(){
         PosicionarCursor(40,12);cout<<"COLA: ";
         int y = 14;
         MostrarEn(cola,40,y,1);
-        PosicionarCursor(40,y);cout<<"PILA: ";
+        PosicionarCursor(40,y++);cout<<"PILA: ";
         MostrarEn(pila,40,y,1);
         PosicionarCursor(40,y);
       }
@@ -287,7 +292,7 @@ void Intercambiar_datos(){
         PosicionarCursor(40,12);cout<<"PILA: ";
         int y=14;
         MostrarEn(pila,40,y,1);
-        PosicionarCursor(40,y);cout<<"COLA: ";
+        PosicionarCursor(40,y++);cout<<"COLA: ";
         MostrarEn(cola,40,y,1);
         PosicionarCursor(40,y);
       }
@@ -332,7 +337,7 @@ void Operar_datos(){
       case 2:
       {
         float prom=Promedio(*puntero);
-        PosicionarCursor(40,13);cout<<"El promedio de las notas es: "<<prom<<endl;
+        PosicionarCursor(40,13);cout<<"El promedio de las notas es: "<<prom;
       }
       PosicionarCursor(40,15);system("pause");
       break;
@@ -353,8 +358,12 @@ void Operar_datos(){
           do{
             system("cls");
             float aux;
+            int y=16;
+            MostrarEn(*puntero,40,y);
             PosicionarCursor(40,14);cout<<"Digite la id que desea editar: ",cin>>aux;
+
             Estudiante* e = BuscarId(*puntero,aux);
+            
             if (e!=NULL){
               do{
                 system("cls");
@@ -371,7 +380,7 @@ void Operar_datos(){
               
               do{
                 system("cls");
-                PosicionarCursor(40,14);cout<<"Digite la id que desea editar: "<<aux;;
+                PosicionarCursor(40,14);cout<<"Digite la id que desea editar: "<<aux;
                 PosicionarCursor(40,15);cout<<"No existe esa ID en "<<texto_modo;
                 PosicionarCursor(40,17);cout<<"¿Desea intentar de nuevo? 1. Si | 2. No";
                 PosicionarCursor(40,18);cout<<"Su respuesta: ",cin>>opcion;
@@ -443,16 +452,15 @@ void Respaldo(){
       case 1:
         {
           Nodo*auxiliar_carga=Cargar(modo==1? cola:pila);
+
           int pregunta;
           if (auxiliar_carga==NULL)
           {
             PosicionarCursor(40,12);cout<<"Parece que no hay nada para cargar";
           }else{
-            if(vacia(*puntero)){
-              pregunta=1;
-              
-
-            }else{
+            pregunta=1;
+            if(!vacia(*puntero)){
+      
               do{
                 system("cls");
                 PosicionarCursor(40,8);cout<<"Es posible que pierda datos que metio, Desea continuar? 1. Si | 2. No";

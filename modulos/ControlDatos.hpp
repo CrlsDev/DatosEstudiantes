@@ -10,7 +10,7 @@
 #define DIR_ARCHIVO "./Datos/notas_estudiantes"
 using namespace std;
 bool Guardar(Nodo* cab,const char* dir = DIR_ARCHIVO){
-  ofstream archivo(string(dir).c_str());
+  ofstream archivo(dir);
   if (!archivo) return false;
 
   while (cab!=NULL){
@@ -21,7 +21,7 @@ bool Guardar(Nodo* cab,const char* dir = DIR_ARCHIVO){
   return true;
 }
 Nodo* Cargar(Nodo* no_valido=NULL,const char* dir = DIR_ARCHIVO){
-  ifstream archivo(string(dir).c_str());
+  ifstream archivo(dir);
   if (!archivo) return NULL;
   Nodo* cab = NULL;
   string linea;
@@ -45,11 +45,13 @@ Nodo* Cargar(Nodo* no_valido=NULL,const char* dir = DIR_ARCHIVO){
       e=new Estudiante;
       conversion = new stringstream();
       *conversion<<datos[0]; *conversion>>e->id;
+      
       conversion = new stringstream();
       *conversion<<datos[1]; *conversion>>e->nota;
       e->nombre=datos[2];
       if (!Buscar(no_valido,e->id))colaMeter(cab,e);
     }
   }
+  archivo.close();
   return cab; 
 }

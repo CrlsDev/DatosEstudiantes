@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "modulos/funciones.hpp"
-#include ".\modulos\ControlDatos.hpp" //se incluyo el archivo de funciones
+#include ".\modulos\ControlDatos.hpp"
 #include "modulos/menu.hpp"
 using namespace std;
 
