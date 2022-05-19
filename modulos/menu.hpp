@@ -282,7 +282,7 @@ void Intercambiar_datos(){
         int y = 14;
         MostrarEn(cola,40,y,1);
         PosicionarCursor(40,y++);cout<<"PILA: ";
-        MostrarEn(pila,40,y,1);
+        MostrarEn(pila,40,++y,1);
         PosicionarCursor(40,y);
       }
       break;
@@ -293,7 +293,7 @@ void Intercambiar_datos(){
         int y=14;
         MostrarEn(pila,40,y,1);
         PosicionarCursor(40,y++);cout<<"COLA: ";
-        MostrarEn(cola,40,y,1);
+        MostrarEn(cola,40,++y,1);
         PosicionarCursor(40,y);
       }
       break;
